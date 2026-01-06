@@ -98,6 +98,7 @@
     todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
     timewarrior             # timewarrior tracking status (https://timewarrior.net/)
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
+    cpu_temp                # CPU temperature
     time                    # current time
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
@@ -1732,3 +1733,21 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
+
+### my custom function for CPU temperature segment ###
+function prompt_cpu_temp() {
+  # Hide segment if command isn't available
+  command -v osx-cpu-temp >/dev/null 2>&1 || return
+
+  # osx-cpu-temp prints like "55.0°C" — show integer degrees
+  local t
+  t=$(osx-cpu-temp 2>/dev/null | awk -F. '{print $1 "°C"}')
+
+  [[ -n "$t" ]] || return
+  p10k segment -t "$t"
+}
+
+typeset -g POWERLEVEL9K_CPU_TEMP_FOREGROUND=0
+typeset -g POWERLEVEL9K_CPU_TEMP_BACKGROUND=5
+typeset -g POWERLEVEL9K_CPU_TEMP_FORMAT='%f'
+typeset -g POWERLEVEL9K_CPU_TEMP_VISUAL_IDENTIFIER_EXPANSION=''
