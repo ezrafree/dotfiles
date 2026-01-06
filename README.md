@@ -14,22 +14,42 @@ Change into your home directory
 cd ~
 ```
 
-Initialize a new git repository
+Clone the bare directory
 
 ```sh
-git init
+git clone --bare git@github.com:ezrafree/dotfiles.git ~/.dotfiles
 ```
 
-Add a remote repository
+Add an alias for `dotfiles` to your `zsh` config:
 
 ```sh
-git remote add origin git@github.com:ezrafree/dotfiles.git
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 ```
 
-Pull down the repository
+Reload your shell:
 
 ```sh
-git pull origin main
+source ~/.zshrc
+```
+
+Prevent Git from showing everything in your home directory:
+
+```sh
+dotfiles config --local status.showUntrackedFiles no
+```
+
+Check out the dotfiles
+
+```sh
+dotfiles checkout
+```
+
+Your dotfiles are now tracked. Use `dotfiles` instead of `git`:
+
+```sh
+dotfiles status
+dotfiles add ~/.zshrc
+dotfiles commit -m "Update zsh config"
 ```
 
 > Please Note: If you have a customized `~/.vimrc` or `~/.vim/` directory, you'll want to back those up before running the above commands.
@@ -41,10 +61,24 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting ~/.zsh/p
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/plugins/zsh-autosuggestions
 ```
 
+Or, install them with `brew`
+
+```sh
+brew install zsh-fast-syntax-highlighting
+brew install zsh-autosuggestions
+```
+
 Finally, install `powerlevel10k`
 
 ```sh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+```
+
+Or, install it with `brew`
+
+```sh
+brew install --cask font-meslo-for-powerlevel10k
+brew install powerlevel10k
 ```
 
 ### Configure Git User
@@ -178,10 +212,10 @@ Add the following to your `~/.gitconfig` to enable the global gitignore file.
 
 ## Uninstall Instructions
 
-To uninstall, you can simply delete the `.git` directory
+To uninstall, you can simply delete the `.dotfiles` directory
 
 ```sh
-rm -rfv ~/.git/
+rm -rfv ~/.dotfiles/
 ```
 
 However, to reinstall again, you'll need to first remove the files this repository tracks.
