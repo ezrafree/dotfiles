@@ -1,0 +1,67 @@
+[include]
+  path = ~/.config/gitconfig
+
+[alias]
+  st = status
+  cm = commit
+  br = branch --sort=committerdate
+  co = checkout
+  df = diff -- . ':(exclude)yarn.lock'
+  fe = fetch
+
+	me = merge
+  dt = difftool
+  mt = mergetool
+  lg = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  ld = log --full-diff -p --date=short
+
+[pager]
+  branch = false
+  diff = false
+
+[merge]
+  tool = vscode
+[mergetool "vscode"]
+  cmd = code --new-window --wait $MERGED
+[mergetool]
+  prompt = false
+[diff]
+  tool = vscode
+[difftool "vscode"]
+  cmd = code --new-window --wait --diff $LOCAL $REMOTE
+[difftool]
+  prompt = false
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = false
+
+[core]
+	excludesfile = ~/.gitignore_global
+	pager = less -FRS --mouse
+	ignoreCase = false
+	editor = vim
+
+[push]
+	autoSetupRemote = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+#[user]
+#	name = Ezra Free
+#	email = ezrafree@users.noreply.github.com
+
+#[user]
+#	email = ezra.burga@deepwatch.com
+#	name = Ezra Burga
+#	signingKey = 01CA79B0E2703C511322213E7145751F99068A77
+#[gpg]
+#	program = gpg
+#[commit]
+#	gpgsign = true
