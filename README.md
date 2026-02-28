@@ -20,31 +20,21 @@ Clone the bare directory
 git clone --bare git@github.com:ezrafree/dotfiles.git ~/.dotfiles
 ```
 
-Add an alias for `dotfiles` to your `zsh` config:
-
-```sh
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-```
-
-Reload your shell:
-
-```sh
-source ~/.zshrc
-```
-
 Prevent Git from showing everything in your home directory:
 
 ```sh
-dotfiles config --local status.showUntrackedFiles no
+git --git-dir=$HOME/.dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
 ```
 
 Check out the dotfiles
 
 ```sh
-dotfiles checkout
+git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
 ```
 
-Your dotfiles are now tracked. Use `dotfiles` instead of `git`:
+Now that you've checked out the repo, your dotfiles are being tracked.
+
+Use `dotfiles` instead of `git`, ie.:
 
 ```sh
 dotfiles status
@@ -57,28 +47,32 @@ dotfiles commit -m "Update zsh config"
 Then install the `fast-syntax-highlighting` and `zsh-autosuggestions` plugins
 
 ```sh
-git clone https://github.com/zdharma-continuum/fast-syntax-highlighting ~/.zsh/plugins/fast-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/plugins/zsh-autosuggestions
-```
-
-Or, install them with `brew`
-
-```sh
 brew install zsh-fast-syntax-highlighting
 brew install zsh-autosuggestions
 ```
 
-Finally, install `powerlevel10k`
-
-```sh
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-```
-
-Or, install it with `brew`
+Install Meslo font
 
 ```sh
 brew install --cask font-meslo-for-powerlevel10k
+```
+
+Configure iTerm2 to use the MesloLGS NF (aka NerdFont)
+
+```sh
+Settings > Profiles > Text > Font
+```
+
+Install `powerlevel10k`
+
+```sh
 brew install powerlevel10k
+```
+
+Configure `powerlevel10k`
+
+```sh
+echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
 ```
 
 ### Configure Git User
@@ -86,7 +80,7 @@ brew install powerlevel10k
 If you're a contributor with commit access, update your username and email for this repository:
 
 ```sh
-cd ~ && git config user.name "Your Name" && git config user.email your@email.com
+cd ~ && git config user.name "Ezra Free" && git config user.email ezrafree@gmail.com
 ```
 
 ## Configure

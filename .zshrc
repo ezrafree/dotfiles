@@ -24,3 +24,4 @@ source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # initialize the fast-syntax-highlighting plugin (must be last)
 source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
