@@ -77,10 +77,23 @@ echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.
 
 ### Configure Git User
 
-If you're a contributor with commit access, update your username and email for this repository:
+Update your username and email for this repository:
 
 ```sh
-cd ~ && git config user.name "Ezra Free" && git config user.email ezrafree@gmail.com
+cd ~ && dotfiles config user.name "Ezra Free" && dotfiles config user.email ezrafree@gmail.com
+```
+
+### Install Vimplug
+
+```sh
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+Run `vi` and inside of Vim run:
+
+```sh
+:PlugInstall
 ```
 
 ## Configure
@@ -91,12 +104,12 @@ Create `~/.config/gitconfig` which will be included by `~/.gitconfig` (your glob
 mkdir -p ~/.config/ && vi ~/.config/gitconfig
 ```
 
-Add the following contents:
+Add the following contents to `~/.config/gitconfig`:
 
 ```sh
 [user]
-  name = "Your Name"
-  email = "username@hostname.com"
+  name = "Ezra Free"
+  email = "ezrafree@gmail.com"
 ```
 
 > You can add any other custom configurations that you don't want to track in the repository here, too.

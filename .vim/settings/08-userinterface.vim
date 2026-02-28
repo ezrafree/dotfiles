@@ -39,7 +39,7 @@ let g:airline_theme='molokai'
 set noshowmode
 
 " Set floating window to be slightly transparent
-set winblend=10
+"set winblend=10
 
 " ================ Highlight active window ======================
 

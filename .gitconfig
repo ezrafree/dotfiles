@@ -59,11 +59,3 @@
 #	name = Ezra Free
 #	email = ezrafree@users.noreply.github.com
 
-#[user]
-#	email = ezra.burga@deepwatch.com
-#	name = Ezra Burga
-#	signingKey = 01CA79B0E2703C511322213E7145751F99068A77
-#[gpg]
-#	program = gpg
-#[commit]
-#	gpgsign = true
