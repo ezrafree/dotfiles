@@ -9,7 +9,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # initialize powerlevel10k
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme
+#source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # source any .zsh files in ~/.zsh/config/
 for file in ~/.zsh/config/*.zsh; do
@@ -20,8 +21,9 @@ done
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # initialize the zsh-autosuggestions plugin
-source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix zsh-autosuggestions)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # initialize the fast-syntax-highlighting plugin (must be last)
-source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+source $(brew --prefix zsh-fast-syntax-highlighting)/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+#source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh

@@ -114,7 +114,7 @@ Add the following contents to `~/.config/gitconfig`:
 
 > You can add any other custom configurations that you don't want to track in the repository here, too.
 
-## Config Files
+## Tracked Config Files
 
 ## Vim
 
@@ -206,15 +206,6 @@ The following is the list of other config files in the `~/` directory which are 
 ├── .vimrc
 ├── .zshrc
 └── README.md
-```
-
-### Configure Global Gitignore
-
-Add the following to your `~/.gitconfig` to enable the global gitignore file.
-
-```sh
-[core]
-  excludesfile = ~/.gitignore_global
 ```
 
 ## Uninstall Instructions

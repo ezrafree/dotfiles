@@ -21,7 +21,7 @@ CORRECT_IGNORE="[_|.]*"
 COMPLETION_WAITING_DOTS="true"
 
 # set this to either "eza" or "lsd" or an empty string to use normal "ls"
-CUSTOM_LS_COMMAND="eza"
+CUSTOM_LS_COMMAND="lsd"
 
 # remove background highlighting when pasting
 zle_highlight+=(paste:none)
