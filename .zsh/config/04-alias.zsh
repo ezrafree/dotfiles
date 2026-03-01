@@ -40,6 +40,7 @@ alias logdiff='git log --full-diff -p'
 
 alias timezsh='{ time ( source ~/.zshrc; ) } 2>&1'
 
+alias cdwiki='cd ~/code/wiki/'
 alias syncwiki='cdwiki && git pull && git add -v . && git commit -m "updates" && git push; cd -'
 alias synchome='cd ~ && git pull && git add -v . && git commit -m "updates" && git push; cd -'
 
@@ -77,3 +78,6 @@ fi
 command -v bat > /dev/null && alias cat='bat --pager never'
 
 command -v htop > /dev/null && alias top='htop'
+
+# aliasing a command to itself suppresses zsh correction for it
+alias yarn='yarn'
