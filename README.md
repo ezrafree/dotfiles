@@ -114,7 +114,7 @@ Add the following contents to `~/.config/gitconfig`:
 
 > You can add any other custom configurations that you don't want to track in the repository here, too.
 
-## Tracked Config Files
+## Which Files Are Included
 
 ## Vim
 
