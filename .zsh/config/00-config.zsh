@@ -28,3 +28,8 @@ zle_highlight+=(paste:none)
 
 # enable git branch name autocompletion
 autoload -Uz compinit && compinit
+
+# configure pyenv for python
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
