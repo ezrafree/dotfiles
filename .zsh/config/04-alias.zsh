@@ -14,7 +14,6 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias diff='diff --color=auto'
-alias python="python3"
 #alias echopath="echo $PATH | tr : '\n'"
 
 alias timezsh='{ time ( source ~/.zshrc; ) } 2>&1'

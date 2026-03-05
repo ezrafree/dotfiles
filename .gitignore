@@ -1,13 +1,15 @@
 # Ignore everything in this directory
 *
 
-# Allow these files
+# Allow these files...
+
 !.gitconfig
 !.gitignore
 !.gitignore_global
 !.hushlogin
 !.p10k.zsh
 !README.md
+!Brewfile
 
 !.zshrc
 !.zsh/
@@ -47,6 +49,8 @@
 !Preferences/iTerm2/settings/com.googlecode.iterm2.plist
 !Preferences/vscode/
 !Preferences/vscode/backup-vscode.sh
+
+# ignore these files...
 
 node_modules/
 /test-results/
