@@ -42,13 +42,8 @@
 !.config/
 !.config/nvim/
 !.config/nvim/init.vim
-
-!Preferences/
-!Preferences/iTerm2/
-!Preferences/iTerm2/settings/
-!Preferences/iTerm2/settings/com.googlecode.iterm2.plist
-!Preferences/vscode/
-!Preferences/vscode/backup-vscode.sh
+!.config/iterm2/
+!.config/iterm2/com.googlecode.iterm2.plist
 
 # ignore these files...
 

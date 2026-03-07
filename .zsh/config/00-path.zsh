@@ -12,3 +12,6 @@ export PATH=$HOME/.npm/bin:$PATH
 # configure visual editor for git
 export VISUAL=/usr/local/bin/nvim
 export EDITOR="$VISUAL"
+
+# configure vs code's `code` command
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"

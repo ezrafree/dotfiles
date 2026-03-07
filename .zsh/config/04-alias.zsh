@@ -80,3 +80,4 @@ command -v htop > /dev/null && alias top='htop'
 
 # aliasing a command to itself suppresses zsh correction for it
 alias yarn='yarn'
+alias mas='mas'
