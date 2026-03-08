@@ -1,5 +1,3 @@
-tap "macos-fuse-t/cask"
-
 brew "bat"
 brew "cowsay"
 brew "fd"
