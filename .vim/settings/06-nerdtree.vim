@@ -13,7 +13,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+autocmd BufWinEnter * if getcmdwintype() == '' && exists(':NERDTreeMirror') | silent NERDTreeMirror | endif
 
 " Automatically close NerdTree when you open a file
 let NERDTreeQuitOnOpen = 0
