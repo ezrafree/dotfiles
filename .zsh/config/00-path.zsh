@@ -15,3 +15,6 @@ export EDITOR="$VISUAL"
 
 # configure vs code's `code` command
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+# configure path for my own scripts in `~/.bin/` and `~/bin/`
+export PATH="$HOME/.bin:$HOME/bin:$PATH"
