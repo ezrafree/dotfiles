@@ -45,6 +45,7 @@
 !.config/iterm2/
 !.config/iterm2/com.googlecode.iterm2.plist
 
+!.config/aerial/
 !.config/aerial/prefs.plist
 
 !.npmrc
