@@ -48,6 +48,11 @@
 !.config/aerial/
 !.config/aerial/prefs.plist
 
+!.config/bin/
+!.config/bin/cleanup_downloads.sh
+!.config/bin/cleanup_screenshots.sh
+!.config/bin/global-npm.sh
+
 !.npmrc
 
 # ignore these files...
