@@ -52,6 +52,7 @@
 !.config/bin/cleanup_downloads.sh
 !.config/bin/cleanup_screenshots.sh
 !.config/bin/global-npm.sh
+!.config/bin/global-mas.sh
 
 !.npmrc
 
