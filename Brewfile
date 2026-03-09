@@ -12,7 +12,6 @@ brew "powerlevel10k"
 brew "pyenv"
 brew "ripgrep"
 brew "typescript"
-brew "yarn"
 brew "zsh-autosuggestions"
 brew "zsh-fast-syntax-highlighting"
 

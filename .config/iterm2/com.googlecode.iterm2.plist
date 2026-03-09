@@ -32,6 +32,8 @@
 	<string>B9CD49C5-2478-4B91-A657-9E37DB9C134D</string>
 	<key>Default Browser Profile Guid</key>
 	<string>B9CD49C5-2478-4B91-A657-9E37DB9C134D</string>
+	<key>DimInactiveSplitPanes</key>
+	<false/>
 	<key>GlobalKeyMap</key>
 	<dict>
 		<key>0x19-0x60000</key>
@@ -1347,6 +1349,8 @@
 	<false/>
 	<key>OpenNoWindowsAtStartup</key>
 	<false/>
+	<key>PerPaneBackgroundImage</key>
+	<true/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -1381,6 +1385,10 @@
 		</dict>
 	</dict>
 	<key>PromptOnQuit</key>
+	<false/>
+	<key>ShowFullScreenTabBar</key>
+	<true/>
+	<key>ShowPaneTitles</key>
 	<false/>
 	<key>SoundForEsc</key>
 	<false/>

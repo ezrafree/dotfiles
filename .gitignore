@@ -20,6 +20,7 @@
 !.zsh/config/02-plugins.zsh
 !.zsh/config/03-ohmyzsh.zsh
 !.zsh/config/04-alias.zsh
+!.zsh/config/05-secrets.zsh
 
 !.vimrc
 !.vim/
