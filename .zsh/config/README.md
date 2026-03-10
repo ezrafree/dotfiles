@@ -12,11 +12,8 @@ The following is the list of files in the `~/.zsh/` directory which are tracked.
 .zsh/
 └── config/
    ├── 00-config.zsh
-   ├── 00-path.zsh
-   ├── 01-manpages.zsh
-   ├── 02-plugins.zsh
-   ├── 03-ohmyzsh.zsh
-   ├── 04-alias.zsh
-   ├── 05-secrets.zsh
+   ├── 01-path.zsh
+   ├── 02-manpages.zsh
+   ├── 03-alias.zsh
    └── README.md
 ```

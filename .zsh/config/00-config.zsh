@@ -29,7 +29,19 @@ zle_highlight+=(paste:none)
 # enable git branch name autocompletion
 autoload -Uz compinit && compinit
 
+# configure visual editor for git
+export VISUAL=/usr/local/bin/nvim
+export EDITOR="$VISUAL"
+
 # configure pyenv for python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# configure fuzzy finder (fzf) shell integration
+source <(fzf --zsh)
+export FZF_CTRL_T_OPTS="--style full --preview 'fzf-preview.sh {}'"
+export FZF_CTRL_R_OPTS="--height 40%"  # keep history search minimal
+
+# initialize zoxide (z) for advanced cd functionality
+eval "$(zoxide init zsh)"

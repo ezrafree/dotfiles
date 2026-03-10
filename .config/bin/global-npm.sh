@@ -3,7 +3,6 @@
 packages=(
   @anthropic-ai/claude-code
   @openai/codex
-  corepack
 )
 
 for package in "${packages[@]}"; do
