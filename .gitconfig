@@ -56,6 +56,6 @@
 	required = true
 
 #[user]
-#	name = Ezra Free
-#	email = ezrafree@users.noreply.github.com
+	name = Ezra Free
+	email = ezrafree@users.noreply.github.com
 
