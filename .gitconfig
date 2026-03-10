@@ -55,7 +55,6 @@
 	process = git-lfs filter-process
 	required = true
 
-#[user]
+[user]
 	name = Ezra Free
 	email = ezrafree@users.noreply.github.com
-
