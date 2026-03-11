@@ -12,3 +12,6 @@ export PATH="$HOME/.bin:$HOME/bin:$PATH"
 
 # configure a user config for npm
 export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
+
+# configure coreutils
+export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"

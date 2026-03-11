@@ -13,7 +13,8 @@ The following is the list of files in the `~/.zsh/` directory which are tracked.
 └── config/
    ├── 00-config.zsh
    ├── 01-path.zsh
-   ├── 02-manpages.zsh
-   ├── 03-alias.zsh
+   ├── 02-alias.zsh
+   ├── 03-functions.zsh
+   ├── 04-manpages.zsh
    └── README.md
 ```

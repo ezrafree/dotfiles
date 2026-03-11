@@ -3,6 +3,15 @@
 [include]
   path = ~/.config/gitconfig
 
+[core]
+	excludesfile = ~/.gitignore_global
+  pager = delta
+	ignoreCase = false
+	editor = vim
+
+[pager]
+  branch = false
+
 [alias]
   st = status
   cm = commit
@@ -16,10 +25,6 @@
   mt = mergetool
   lg = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   ld = log --full-diff -p --date=short
-
-[pager]
-  branch = false
-  diff = false
 
 [merge]
   tool = vscode
@@ -40,12 +45,6 @@
 [pull]
 	rebase = false
 
-[core]
-	excludesfile = ~/.gitignore_global
-	pager = less -FRS --mouse
-	ignoreCase = false
-	editor = vim
-
 [push]
 	autoSetupRemote = true
 
@@ -55,6 +54,9 @@
 	process = git-lfs filter-process
 	required = true
 
-[user]
-	name = Ezra Free
-	email = ezrafree@users.noreply.github.com
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  line-numbers = true

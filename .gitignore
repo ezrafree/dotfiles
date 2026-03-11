@@ -16,8 +16,9 @@
 !.zsh/config/
 !.zsh/config/00-config.zsh
 !.zsh/config/01-path.zsh
-!.zsh/config/02-manpages.zsh
-!.zsh/config/03-alias.zsh
+!.zsh/config/02-alias.zsh
+!.zsh/config/03-functions.zsh
+!.zsh/config/04-manpages.zsh
 
 !.vimrc
 !.vim/

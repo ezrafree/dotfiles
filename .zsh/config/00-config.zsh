@@ -29,9 +29,10 @@ zle_highlight+=(paste:none)
 # enable git branch name autocompletion
 autoload -Uz compinit && compinit
 
-# configure visual editor for git
-export VISUAL=/usr/local/bin/nvim
-export EDITOR="$VISUAL"
+# configure visual editor for git etc.
+export GIT_EDITOR="nvim -f"
+export VISUAL=nvim
+export EDITOR=nvim
 
 # configure pyenv for python
 export PYENV_ROOT="$HOME/.pyenv"
