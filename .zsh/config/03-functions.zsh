@@ -43,7 +43,9 @@ fi
 # map rm to trash while allowing (but ignoring) additional flags but preserving -v
 # usage: $ rm -rfv <file | directory>
 if has trash; then
-  rm() {
+  unalias rm 2>/dev/null
+
+  function rm {
     local verbose=0
     local files=()
     local parsing_flags=1
