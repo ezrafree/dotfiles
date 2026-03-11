@@ -11,8 +11,7 @@ The following is the list of files in the `~/.zsh/` directory which are tracked.
 ```none
 .zsh/
 └── config/
-   ├── 00-config.zsh
-   ├── 01-path.zsh
+   ├── 01-config.zsh
    ├── 02-alias.zsh
    ├── 03-functions.zsh
    ├── 04-manpages.zsh

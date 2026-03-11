@@ -4,6 +4,8 @@
 # (leave this commented when not in use to preserve performance)
 #preexec(){ [ $1 != $2 ] && print -r "> $2" }
 
+alias reload='exec zsh'
+
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 alias cl="clear"
