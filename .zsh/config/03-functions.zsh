@@ -57,11 +57,14 @@ if has trash; then
           --)
             parsing_flags=0
             ;;
-          -v|--verbose)
+          --verbose)
             verbose=1
             ;;
+          -[!-]*)
+            [[ "$arg" == *v* ]] && verbose=1
+            ;;
           -*)
-            ;; # ignore other flags like -r -f
+            ;;
           *)
             files+=("$arg")
             ;;
