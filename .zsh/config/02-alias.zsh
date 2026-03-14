@@ -24,6 +24,8 @@ alias rrm='/bin/rm'
 
 alias timezsh='{ time ( source ~/.zshrc; ) } 2>&1'
 
+alias 'yarn up'='yarn upgrade'
+
 alias json='jq .'
 alias yaml='yq .'
 
@@ -40,6 +42,7 @@ alias logdiff='git log --full-diff -p'
 alias cdwiki='cd ~/code/wiki/'
 alias syncwiki='cdwiki && git pull && git add -v . && git commit -m "updates" && git push; cd -'
 alias synchome='cd ~ && dotfiles pull && dotfiles add -v . && dotfiles commit -m "updates" && dotfiles push; cd -'
+alias syncbootstrap='cd ~/code/quietmind-sh/ && git pull && git add -v . && git commit -m "updates" && git push; cd -'
 
 #alias viaws="rm -rfv ~/.aws/credentials && touch ~/.aws/credentials && pbpaste > ~/.aws/credentials && perl -i -pe's/\[(.*?)\]/[default]/g' ~/.aws/credentials && cat ~/.aws/credentials"
 

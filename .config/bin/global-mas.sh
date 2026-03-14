@@ -1,4 +1,4 @@
-# global-mas.sh
+#!/usr/bin/env bash
 
 declare -A apps=(
   ["Xcode"]="497799835"

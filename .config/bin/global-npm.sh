@@ -1,4 +1,4 @@
-# global-npm.sh
+#!/usr/bin/env bash
 
 packages=(
   @anthropic-ai/claude-code
