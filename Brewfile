@@ -30,7 +30,6 @@ brew "zsh-autosuggestions"
 brew "zsh-fast-syntax-highlighting"
 
 cask "1password"
-cask "aerial"
 cask "brave-browser"
 cask "caffeine"
 cask "carbon-copy-cloner"
