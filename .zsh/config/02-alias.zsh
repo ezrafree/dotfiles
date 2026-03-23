@@ -20,10 +20,10 @@ alias pmain="git co main && git pull"
 alias stash='git stash --include-untracked'
 alias logdiff='git log --full-diff -p'
 
-# deletes local branches whose remote tracking branch no longer exists
+# delete local branches whose remote tracking branch no longer exists
 alias brsync='git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs -I {} git branch -D {}'
 
-# nukes ALL local branches except current, master, main, dev
+# nuke all local branches except current, master, main, dev
 alias brclear='git branch | egrep -v "(^\*|master|main|dev)" | xargs -I {} git branch -D {}'
 
 # map `yarn up` to `yarn upgrade`
@@ -50,13 +50,13 @@ alias egrep='egrep --color=auto'
 alias diff='diff --color=auto'
 alias rg='rg --smart-case'
 
-# flush dns and restart the service
+# flush the DNS cache and restart the DNS responder service
 alias flushdns='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 
 # print out the paths in $PATH each on a new line
 alias echopath='echo $PATH | tr : "\n"'
 
-# copy last command to clipboard
+# copy the most recently run command to the clipboard
 alias lc='fc -ln -1 | pbcopy'
 
 # map `rrm` to the real `rm` as an escape hatch

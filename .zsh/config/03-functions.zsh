@@ -93,31 +93,51 @@ if has trash; then
 fi
 
 # pull, add, commit, and push a repo (uses dotfiles instead of git when run in ~)
-syncrepo() {
-  local dir="$1"
-  local commit_msg="${2:-updates}"
-  local oldpwd="$PWD"
-  local -a cmd
+# usage:
+# $ syncrepo
+# $ syncrepo .
+# $ syncrepo ~
+# $ syncrepo ~/code/my-repo/
+# $ syncrepo "my commit message"
+if has git; then
+  syncrepo() {
+    local dir="."
+    local commit_msg="updates"
+    local oldpwd="$PWD"
+    local -a cmd
 
-  cd "$dir" || return
+    # argument parsing
+    if (( $# == 1 )); then
+      if [[ -d "$1" ]]; then
+        dir="$1"
+      else
+        commit_msg="$1"
+      fi
+    elif (( $# >= 2 )); then
+      dir="$1"
+      commit_msg="$2"
+    fi
 
-  if [[ "$PWD" == "$HOME" ]]; then
-    cmd=(/usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME")
-  else
-    cmd=(git)
-  fi
+    cd "$dir" || return
 
-  "${cmd[@]}" pull
-  "${cmd[@]}" add -v .
+    if [[ "$PWD" == "$HOME" ]]; then
+      cmd=(/usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME")
+    else
+      cmd=(git)
+    fi
 
-  if "${cmd[@]}" diff --cached --quiet; then
-    echo "nothing to commit"
-  else
-    "${cmd[@]}" commit -m "$commit_msg" && "${cmd[@]}" push
-  fi
+    "${cmd[@]}" pull
+    "${cmd[@]}" add -v .
 
-  cd "$oldpwd" || return
-}
+    if "${cmd[@]}" diff --cached --quiet; then
+      echo "nothing to commit"
+    else
+      "${cmd[@]}" commit -m "$commit_msg" && "${cmd[@]}" push
+    fi
+
+    cd "$oldpwd" || return
+  }
+fi
 
 # show local IP address
 localip() {
