@@ -1,5 +1,10 @@
 #!/usr/bin/env zsh
 
+# my dotfiles bare repo git command
+cfg() {
+  /usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
+}
+
 # make a directory and cd into it
 mkcd() { mkdir -p "$1" && cd "$1"; }
 

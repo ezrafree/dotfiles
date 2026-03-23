@@ -7,9 +7,6 @@
 # reload zsh (better than `source ~/.zshrc`)
 alias reload='exec zsh'
 
-# my dotfiles bare repo git command
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
 # benchmark zsh startup time
 alias timezsh='{ time ( source ~/.zshrc; ) } 2>&1 | awk "{print \$(NF-1) \"s\"}"'
 
