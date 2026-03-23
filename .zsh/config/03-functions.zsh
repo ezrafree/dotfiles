@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# make a directory and cd into it
+mkcd() { mkdir -p "$1" && cd "$1"; }
+
 # reusable helper to check if a command is installed
 has() {
   (( $+commands[$1] ))
@@ -83,3 +86,35 @@ if has trash; then
     fi
   }
 fi
+
+# pull, add, commit, and push a repo (uses dotfiles instead of git when run in ~)
+syncrepo() {
+  local dir="$1"
+  local commit_msg="${2:-updates}"
+  local oldpwd="$PWD"
+  local -a cmd
+
+  cd "$dir" || return
+
+  if [[ "$PWD" == "$HOME" ]]; then
+    cmd=(/usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME")
+  else
+    cmd=(git)
+  fi
+
+  "${cmd[@]}" pull
+  "${cmd[@]}" add -v .
+
+  if "${cmd[@]}" diff --cached --quiet; then
+    echo "nothing to commit"
+  else
+    "${cmd[@]}" commit -m "$commit_msg" && "${cmd[@]}" push
+  fi
+
+  cd "$oldpwd" || return
+}
+
+# show local IP address
+localip() {
+  ipconfig getifaddr "$(route get default | awk '/interface: / {print $2}')"
+}

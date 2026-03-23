@@ -1,24 +1,14 @@
 #!/usr/bin/env zsh
 
-# read the commands in `~/.zsh_nocorrect` and set them to not be autocorrected
-if [ -f ~/.zsh_nocorrect ]; then
-    while read -r COMMAND; do
-        alias $COMMAND="nocorrect $COMMAND"
-    done < ~/.zsh_nocorrect
-fi
+# disable command auto-correction
+unsetopt CORRECT
 
-# enable command auto-correction
-ENABLE_CORRECTION="false"
-
-# OPTs to enable
+# cache all executables in $PATH for faster command lookup
 setopt HASH_LIST_ALL
-setopt CORRECT
+
 # Zsh variable to determine what to ignore,
 # in this case everything starting with _ or .
 CORRECT_IGNORE="[_|.]*"
-
-# Display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
 
 # set this to either "eza" or "lsd" or an empty string to use normal "ls"
 CUSTOM_LS_COMMAND="lsd"
@@ -26,7 +16,7 @@ CUSTOM_LS_COMMAND="lsd"
 # remove background highlighting when pasting
 zle_highlight+=(paste:none)
 
-# enable git branch name autocompletion
+# initialize zsh completion system
 autoload -Uz compinit && compinit
 
 # configure visual editor for git etc.
@@ -34,10 +24,14 @@ export GIT_EDITOR="nvim -f"
 export VISUAL=nvim
 export EDITOR=nvim
 
-# configure pyenv for python
+# configure pyenv root
 export PYENV_ROOT="$HOME/.pyenv"
+
+# add pyenv root to PATH
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+
+# initialize pyenv (disabled for faster startup; uncomment if you need shims/version switching)
+# eval "$(pyenv init -)"
 
 # configure fuzzy finder (fzf) shell integration
 source <(fzf --zsh)
@@ -46,3 +40,7 @@ export FZF_CTRL_R_OPTS="--height 40%"  # keep history search minimal
 
 # initialize zoxide (z) for advanced cd functionality
 eval "$(zoxide init zsh)"
+
+# use ↑/↓ to cycle through history matching current input
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down

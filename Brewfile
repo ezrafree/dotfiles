@@ -28,6 +28,7 @@ brew "yq"
 brew "zoxide"
 brew "zsh-autosuggestions"
 brew "zsh-fast-syntax-highlighting"
+brew "zsh-history-substring-search"
 
 cask "1password"
 cask "brave-browser"
