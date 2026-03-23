@@ -34,12 +34,12 @@ git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
 
 Now that you've checked out the repo, your dotfiles are being tracked.
 
-Use `dotfiles` instead of `git`, ie.:
+Use the `cfg` command instead of `git`, ie.:
 
 ```sh
-dotfiles status
-dotfiles add ~/.zshrc
-dotfiles commit -m "Update zsh config"
+cfg status
+cfg add ~/.zshrc
+cfg commit -m "Update zsh config"
 ```
 
 > Please Note: If you have a customized `~/.vimrc` or `~/.vim/` directory, you'll want to back those up before running the above commands.
@@ -80,7 +80,7 @@ echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.
 Update your username and email for this repository:
 
 ```sh
-cd ~ && dotfiles config user.name "Ezra Free" && dotfiles config user.email ezrafree@gmail.com
+cd ~ && cfg config user.name "Your Name" && dotfiles config user.email username@noreply.user.github.com
 ```
 
 ### Install Vimplug
@@ -108,8 +108,8 @@ Add the following contents to `~/.config/gitconfig`:
 
 ```sh
 [user]
-  name = "Ezra Free"
-  email = "ezrafree@gmail.com"
+  name = "Your Name"
+  email = "username@noreply.user.github.com"
 ```
 
 > You can add any other custom configurations that you don't want to track in the repository here, too.
