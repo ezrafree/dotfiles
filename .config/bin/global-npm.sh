@@ -6,6 +6,7 @@ packages=(
   np
   yo
   generator-code
+  @vscode/vsce
 )
 
 for package in "${packages[@]}"; do
