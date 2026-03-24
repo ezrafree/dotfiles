@@ -1,5 +1,15 @@
 #!/usr/bin/env zsh
 
+##################################################
+
+# set this to either "eza" or "lsd" or an empty string to use normal "ls"
+CUSTOM_LS_COMMAND="lsd"
+
+# set to which editor should be used to open files from fzf searches ("code" or "nvim")
+export FZFSEARCH_EDITOR="code"
+
+##################################################
+
 # disable command auto-correction
 unsetopt CORRECT
 
@@ -9,9 +19,6 @@ setopt HASH_LIST_ALL
 # Zsh variable to determine what to ignore,
 # in this case everything starting with _ or .
 CORRECT_IGNORE="[_|.]*"
-
-# set this to either "eza" or "lsd" or an empty string to use normal "ls"
-CUSTOM_LS_COMMAND="lsd"
 
 # remove background highlighting when pasting
 zle_highlight+=(paste:none)

@@ -14,6 +14,23 @@ has() {
 }
 
 if has rg && has fzf && has bat && has nvim; then
+  _fzfsearch_cmd() {
+    case "${FZFSEARCH_EDITOR:-code}" in
+      code)  echo "code --goto {1}:{2}" ;;
+      nvim)  echo "nvim +{2} {1}" ;;
+      *)     echo "$FZFSEARCH_EDITOR {1}" ;;
+    esac
+  }
+
+  _fzfsearch_open() {
+    local file="$1" line="$2"
+    local cmd
+    cmd="$(_fzfsearch_cmd)"
+    cmd="${cmd/\{1\}/\"$file\"}"
+    cmd="${cmd/\{2\}/$line}"
+    eval "$cmd"
+  }
+
   # recursively search current directory, select a match with fuzzy search, and open it in nvim
   # usage: $ search <search term>
   search() {
@@ -32,7 +49,7 @@ if has rg && has fzf && has bat && has nvim; then
     line="${selection#*:}"
     line="${line%%:*}"
 
-    nvim "+${line}" "$file"
+    _fzfsearch_open "$file" "$line"
   }
 
   # recursively perform a live search on the current directory
@@ -41,10 +58,18 @@ if has rg && has fzf && has bat && has nvim; then
     local rg_prefix='rg --line-number --no-heading --color=always'
 
     fzf --ansi --disabled \
+        --bind "start:reload:$rg_prefix '' || true" \
         --bind "change:reload:$rg_prefix {q} || true" \
         --delimiter : \
         --preview 'bat --style=numbers --color=always {1} --highlight-line {2}' \
-        --bind 'enter:execute(nvim +{2} {1})'
+        --bind "enter:execute($(_fzfsearch_cmd))"
+  }
+
+  browse() {
+    local file
+    file=$(fd --type f | fzf --preview "bat --color=always {}" --preview-window=right:60%) || return
+    [[ -z "$file" ]] && return
+    _fzfsearch_open "$file" 1
   }
 fi
 
