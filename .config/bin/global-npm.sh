@@ -4,6 +4,8 @@ packages=(
   @anthropic-ai/claude-code
   @openai/codex
   np
+  yo
+  generator-code
 )
 
 for package in "${packages[@]}"; do
