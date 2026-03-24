@@ -11,12 +11,13 @@ alias reload='exec zsh'
 alias timezsh='{ time ( source ~/.zshrc; ) } 2>&1 | awk "{print \$(NF-1) \"s\"}"'
 
 # convenience shortcuts
-alias cl="clear"
-alias cdc="cd; clear"
+alias cl='clear'
+alias cdc='cd; clear'
 
 # git convenience shortcuts
-alias pdev="git co dev && git pull"
-alias pmain="git co main && git pull"
+alias pdev='git co dev && git pull'
+alias pmain='git co main && git pull'
+alias gco='git branch | fzf | xargs git checkout'
 alias stash='git stash --include-untracked'
 alias logdiff='git log --full-diff -p'
 
