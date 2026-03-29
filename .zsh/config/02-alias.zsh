@@ -31,7 +31,7 @@ alias brclear='git branch | egrep -v "(^\*|master|main|dev)" | xargs -I {} git b
 alias 'yarn up'='yarn upgrade'
 
 # homebrew
-alias brewup='brew upgrade && brew upgrade --cask --greedy'
+alias brewupgrade='brew upgrade && brew upgrade --cask --greedy'
 
 # change directory commands
 alias cdwiki='cd ~/code/wiki/'

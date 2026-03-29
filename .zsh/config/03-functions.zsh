@@ -164,6 +164,34 @@ if has git; then
   }
 fi
 
+# custom `brewup` function for update/upgrade
+if has brew; then
+  brewup() {
+    case "$1" in
+      update)
+        brew update
+        local outdated=$(brew outdated)
+        [ -z "$outdated" ] && echo "Everything up to date" || echo "$outdated"
+        ;;
+      upgrade)
+      brew update
+        local outdated=$(brew outdated)
+        if [ -z "$outdated" ]; then
+          echo "Everything up to date"
+        else
+          echo "$outdated"
+          echo
+          read "?Upgrade all? [y/N] " confirm
+          [[ "$confirm" =~ ^[Yy]$ ]] && brew upgrade
+        fi
+        ;;
+      *)
+        echo "Usage: brewup [update|upgrade]"
+        ;;
+    esac
+  }
+fi
+
 # show local IP address
 localip() {
   ipconfig getifaddr "$(route get default | awk '/interface: / {print $2}')"
