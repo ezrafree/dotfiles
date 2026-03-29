@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 
-declare -A apps=(
-  ["Xcode"]="497799835"
-  ["Perplexity"]="6714467650"
+mas_apps=(
+  "497799835:Xcode"
+  "6714467650:Perplexity"
 )
 
 installed=$(mas list)
 
-for name in "${!apps[@]}"; do
-  id="${apps[$name]}"
+for entry in "${mas_apps[@]}"; do
+  id="${entry%%:*}"
+  name="${entry##*:}"
   if echo "$installed" | grep -q "^$id"; then
     echo "==> Already installed: $name"
   else
     echo "==> Installing $name"
-    mas install "$id"
+    mas install "$id" || true
   fi
 done

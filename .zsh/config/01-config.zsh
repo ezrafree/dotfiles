@@ -40,6 +40,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 # initialize pyenv (disabled for faster startup; uncomment if you need shims/version switching)
 # eval "$(pyenv init -)"
 
+# add gnubin to PATH
+export PATH="$BREW_PREFIX/coreutils/libexec/gnubin:$PATH"
+
 # configure fuzzy finder (fzf) shell integration
 source <(fzf --zsh)
 export FZF_CTRL_T_OPTS="--style full --preview 'fzf-preview.sh {}'"
