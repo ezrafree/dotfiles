@@ -38,6 +38,9 @@ let g:airline_theme='molokai'
 " Don't dispay mode in command line (airilne already shows it)
 set noshowmode
 
+" Disable mouse
+set mouse=
+
 " Set floating window to be slightly transparent
 "set winblend=10
 

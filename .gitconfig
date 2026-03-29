@@ -59,4 +59,6 @@
 
 [delta]
   navigate = true
-  line-numbers = true
+  line-numbers = false
+  decorations = false
+  keep-plus-minus-markers = true
