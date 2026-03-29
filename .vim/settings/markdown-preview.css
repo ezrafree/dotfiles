@@ -1,5 +1,5 @@
 /*
- * github like style
+ * github like style (dark mode)
  * https://github.com/iamcco/markdown.css/blob/master/dest/github/markdown.css
  */
 .markdown-body ol ol,
@@ -277,8 +277,74 @@
 
 /* custom styles */
 #page-ctn {
-  margin: 2.5rem auto !important;
+  margin: 0 auto !important;
+}
+
+main {
+  padding: 2.5rem 0;
 }
 .markdown-body {
   padding: 1.5rem 2rem !important;
+}
+
+/* dark mode overrides */
+[data-theme="dark"] body,
+[data-theme="dark"] main {
+  background: #1c2128;
+}
+[data-theme="dark"] .markdown-body {
+  color: #cdd9e5;
+  background: #1c2128;
+  border-color: #373e47;
+}
+[data-theme="dark"] .markdown-body h1,
+[data-theme="dark"] .markdown-body h2,
+[data-theme="dark"] .markdown-body h3,
+[data-theme="dark"] .markdown-body h4,
+[data-theme="dark"] .markdown-body h5,
+[data-theme="dark"] .markdown-body h6 {
+  color: #cdd9e5;
+}
+[data-theme="dark"] .markdown-body h6 {
+  color: #768390;
+}
+[data-theme="dark"] .markdown-body h1,
+[data-theme="dark"] .markdown-body h2 {
+  border-bottom-color: #373e47;
+}
+[data-theme="dark"] .markdown-body hr {
+  border-top-color: #373e47;
+}
+[data-theme="dark"] .markdown-body blockquote {
+  color: #768390;
+  border-left-color: #373e47;
+}
+[data-theme="dark"] .markdown-body table tr {
+  background-color: #1c2128;
+  border-top-color: #373e47;
+}
+[data-theme="dark"] .markdown-body table tr:nth-child(2n) {
+  background-color: #22272e;
+}
+[data-theme="dark"] .markdown-body table th,
+[data-theme="dark"] .markdown-body table td {
+  border-color: #373e47;
+}
+[data-theme="dark"] .markdown-body kbd {
+  color: #adbac7;
+  background-color: #22272e;
+  border-color: #444c56;
+  box-shadow: inset 0 -1px 0 #444c56;
+}
+[data-theme="dark"] .markdown-body pre {
+  background-color: #22272e;
+}
+[data-theme="dark"] .markdown-body code {
+  background-color: rgba(99,110,123,0.2);
+}
+[data-theme="dark"] .markdown-body pre code {
+  background-color: transparent;
+}
+[data-theme="dark"] .markdown-body a {
+  color: #539bf5;
 }

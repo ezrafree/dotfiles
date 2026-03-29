@@ -49,6 +49,7 @@ Plug 'int3/vim-extradite'
 Plug 'godlygeek/tabular' " tabular plugin is used to format tables
 Plug 'elzr/vim-json' " JSON front matter highlight plugin
 Plug 'plasticboy/vim-markdown' " Base vim-markdown plugin
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' } " Markdown preview in browser
 
 " ========== Initialize plugins ========== "
 
