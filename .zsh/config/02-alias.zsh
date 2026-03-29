@@ -40,6 +40,9 @@ alias cdphoenix='cd ~/.config/phoenix/'
 # tail the phoenix window manager logs
 alias logphoenix='cdphoenix && log stream --process Phoenix'
 
+# restart/reload phoenix config
+alias rephoenix='pkill Phoenix && open -a Phoenix'
+
 # sync git repos that I don't care about the commit messages
 alias syncwiki='syncrepo ~/code/wiki'
 alias syncbootstrap='syncrepo ~/code/quietmind-sh'
