@@ -6,8 +6,11 @@ let g:NERDTreeGitStatusUseNerdFonts = 1
 
 " =============== goyo =============== "
 
-"autocmd! User GoyoEnter Limelight
-"autocmd! User GoyoLeave Limelight!
+let g:limelight_conceal_ctermfg = 240
+let g:limelight_conceal_guifg = '#555555'
+
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 
 " =============== vim-better-whitespace =============== "
 
@@ -52,7 +55,7 @@ let g:vim_markdown_json_frontmatter = 1  " for JSON format
 " Wrap in try/catch to avoid errors on initial install before plugin is available
 try
 " Enable extensions
-let g:airline_extensions = ['branch', 'hunks', 'coc']
+let g:airline_extensions = ['branch', 'hunks']
 
 " Update section z to just have line number
 "let g:airline_section_z = airline#section#create(['linenr'])

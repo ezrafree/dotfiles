@@ -2,6 +2,16 @@
 
 " =============== general shortcuts =============== "
 
+" Toggle comment (normal and visual mode)
+nmap <leader>c gcc
+vmap <leader>c gc
+
+" Reload vimrc
+nnoremap <leader>r :source ~/.vimrc<CR>
+
+" Install plugins
+nnoremap <leader>pi :PlugInstall<CR>
+
 " Move between open buffers with Ctrl-n and Ctrl-p
 nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>
@@ -14,7 +24,7 @@ map <C-S-right> :tabnext<CR>
 nnoremap <expr> <Up> v:count ? 'k' : 'gk'
 nnoremap <expr> <Down> v:count ? 'j' : 'gj'
 nnoremap <expr> j v:count ? 'j' : 'gj'
-nnoremap <expr> k v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
 
 " =============== nerdtree shortcuts =============== "
 
@@ -35,10 +45,7 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 " Goyo is a distraction-free writing mode for Vim
 
 " map <leader>f to the :Goyo command
-autocmd FileType markdown nnoremap <buffer> <leader>f :Goyo<CR>
-
-" configure a :Focus command to trigger :Goyo in markdown files
-autocmd FileType markdown command Focus :Goyo
+nnoremap <leader><leader> :Goyo<CR>
 
 " =============== markdown-preview shortcuts =============== "
 
@@ -47,4 +54,4 @@ nnoremap <leader>m :MarkdownPreview<CR>
 
 " =============== git gutter shortcuts =============== "
 
-nmap \g :GitGutterToggle<CR>
+nmap <leader>g :GitGutterToggle<CR>

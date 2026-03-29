@@ -1,3 +1,5 @@
+let mapleader = ","             " Set leader key to comma
+
 set guicursor=a:ver25-blinkon1  " Set blinking, vertical bar cursor
 set ruler                       " Show the line and column numbers of the cursor.
 set textwidth=0                 " Hard-wrap long lines as you type them.

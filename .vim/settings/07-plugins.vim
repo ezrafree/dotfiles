@@ -17,6 +17,9 @@ Plug 'preservim/nerdtree' |
 " Trailing whitespace highlighting & automatic fixing
 Plug 'ntpeters/vim-better-whitespace'
 
+" Easily add/change/delete surrounding quotes, brackets, tags
+Plug 'tpope/vim-surround'
+
 " Goyo is a distraction-free writing mode for Vim
 Plug 'junegunn/goyo.vim'
 
