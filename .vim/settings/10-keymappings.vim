@@ -12,6 +12,9 @@ nnoremap <leader>r :source ~/.vimrc<CR>
 " Install plugins
 nnoremap <leader>pi :PlugInstall<CR>
 
+" Clean unused plugins
+nnoremap <leader>pc :PlugClean<CR>
+
 " Move between open buffers with Ctrl-n and Ctrl-p
 nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>

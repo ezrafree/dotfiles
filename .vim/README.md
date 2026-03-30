@@ -10,6 +10,7 @@ Leader key: `,`
 |-----|--------|
 | `,r` | Reload vimrc |
 | `,pi` | Plugin install |
+| `,pc` | Plugin clean |
 | `,h` | Find and replace |
 | `,/` | Clear search highlight |
 | `,c` | Toggle comment (current line or visual selection) |

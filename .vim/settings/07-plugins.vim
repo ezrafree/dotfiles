@@ -20,6 +20,9 @@ Plug 'ntpeters/vim-better-whitespace'
 " Easily add/change/delete surrounding quotes, brackets, tags
 Plug 'tpope/vim-surround'
 
+" Comment/uncomment lines with gcc (line) or gc (motion/visual)
+Plug 'numToStr/Comment.nvim'
+
 " Goyo is a distraction-free writing mode for Vim
 Plug 'junegunn/goyo.vim'
 
@@ -43,7 +46,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Vim-gitgutter is a Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks
 Plug 'airblade/vim-gitgutter'
 
-" Vim-extradite is a plugin for Vim to simplify the process of committing changes
+" Vim-extradite is a git log/history viewer that extends vim-fugitive's :Glog
 Plug 'int3/vim-extradite'
 
 " ========== Markdown ========== "
@@ -58,3 +61,5 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' 
 
 " Initialize plugin system
 call plug#end()
+
+lua require('Comment').setup()

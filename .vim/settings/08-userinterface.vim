@@ -10,15 +10,13 @@ if (empty($TMUX))
   "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
   " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
   if (has("termguicolors"))
+    " Enable true color support
     set termguicolors
   endif
 endif
 
 " Enable syntax highlighting
 syntax on
-
-" Enable true color support
-set termguicolors
 
 " customize the colors on `autocmd ColorScheme`, which is automatically
 " triggered whenever you change color schemes
