@@ -58,6 +58,7 @@
   diffFilter = delta --color-only
 
 [delta]
+  pager = less --mouse
   navigate = true
   line-numbers = false
   decorations = false

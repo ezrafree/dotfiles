@@ -10,6 +10,9 @@ export FZFSEARCH_EDITOR="code"
 
 ##################################################
 
+# add homebrew to PATH
+export PATH="/opt/homebrew/bin:$PATH"
+
 # disable command auto-correction
 unsetopt CORRECT
 
@@ -34,8 +37,8 @@ export EDITOR=nvim
 # configure pyenv root
 export PYENV_ROOT="$HOME/.pyenv"
 
-# add pyenv root to PATH
-export PATH="$PYENV_ROOT/bin:$PATH"
+# add pyenv paths to PATH
+export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
 
 # initialize pyenv (disabled for faster startup; uncomment if you need shims/version switching)
 # eval "$(pyenv init -)"
