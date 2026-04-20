@@ -8,6 +8,13 @@ cfg() {
 # make a directory and cd into it
 mkcd() { mkdir -p "$1" && cd "$1"; }
 
+# delete every file except the specified file
+# usage: $ keeponly example.txt
+# usage: $ keeponly example.txt /some/dir
+keeponly() {
+  find "${2:-.}" -maxdepth 1 -type f ! -name "$1" -delete
+}
+
 # reusable helper to check if a command is installed
 has() {
   (( $+commands[$1] ))
