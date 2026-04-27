@@ -7,6 +7,7 @@ packages=(
   yo
   generator-code
   @vscode/vsce
+  openclaw
 )
 
 for package in "${packages[@]}"; do
