@@ -30,5 +30,3 @@ source $BREW_PREFIX/zsh-history-substring-search/share/zsh-history-substring-sea
 
 # initialize the fast-syntax-highlighting plugin (must be last)
 source $BREW_PREFIX/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-
-. "$HOME/Library/Application Support/enchanted/bin/env"
