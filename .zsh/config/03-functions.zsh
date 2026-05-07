@@ -203,3 +203,21 @@ fi
 localip() {
   ipconfig getifaddr "$(route get default | awk '/interface: / {print $2}')"
 }
+
+# run `git pull` in each sub-directory if the repo is clean
+pullall() {
+  local dir="${1:-.}"
+
+  for repo in "$dir"/*(/); do
+    [[ -d "$repo/.git" ]] || continue
+
+    echo "==> ${repo:t}"
+
+    if [[ -n "$(git -C "$repo" status --porcelain)" ]]; then
+      echo "Skipping: working tree has changes"
+      continue
+    fi
+
+    git -C "$repo" pull --ff-only
+  done
+}
