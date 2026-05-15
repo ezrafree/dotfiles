@@ -21,7 +21,6 @@
 !.zsh/config/03-functions.zsh
 !.zsh/config/04-manpages.zsh
 
-
 !.vimrc
 !.vim/
 !.vim/colors/
@@ -56,6 +55,9 @@
 !.config/bin/global-mas.sh
 
 !.npmrc
+
+!Applications/
+!Applications/**
 
 # explicitly ignore these files...
 
