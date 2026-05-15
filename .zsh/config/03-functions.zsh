@@ -221,3 +221,104 @@ pullall() {
     git -C "$repo" pull --ff-only
   done
 }
+
+# touch a file but make the directory if it doesn't exist
+mktouch() {
+  mkdir -p "$(dirname "$1")" && touch "$1"
+}
+
+# commit helper
+commit() {
+  local type=""
+  local scope=""
+  local description=""
+  local noadd=false
+  local nopush=false
+  local debug=false
+  local positional=()
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -t|--type)
+        type="$2"
+        shift 2
+        ;;
+      --type=*)
+        type="${1#*=}"
+        shift
+        ;;
+      -s|--scope)
+        scope="$2"
+        shift 2
+        ;;
+      --scope=*)
+        scope="${1#*=}"
+        shift
+        ;;
+      -d|--description|-m|--message)
+        description="$2"
+        shift 2
+        ;;
+      --description=*|--message=*)
+        description="${1#*=}"
+        shift
+        ;;
+      -a|--noadd)
+        noadd=true
+        shift
+        ;;
+      -p|--nopush)
+        nopush=true
+        shift
+        ;;
+      --debug)
+        debug=true
+        shift
+        ;;
+      *)
+        positional+=("$1")
+        shift
+        ;;
+    esac
+  done
+
+  [[ -z "$type" ]] && type="${positional[1]}"
+  [[ -z "$scope" ]] && scope="${positional[2]}"
+  [[ -z "$description" ]] && description="${positional[3,-1]}"
+
+  if [[ -z "$type" ]]; then
+    echo "Commit type:"
+    select selected_type in feat test fix refactor docs style build ci perf; do
+      type="$selected_type"
+      break
+    done
+  fi
+
+  [[ -z "$scope" ]] && read "scope?Commit scope: "
+  [[ -z "$description" ]] && read "description?If accepted, this commit will: "
+
+  local commit_message="${type}(${scope}): ${description}"
+
+  if [[ "$debug" == true ]]; then
+    echo "$commit_message"
+    return 0
+  fi
+
+  if [[ ! -d .git ]]; then
+    echo "Not in a git repository root."
+    return 1
+  fi
+
+  if [[ "$noadd" == true ]]; then
+    git commit -m "$commit_message"
+  else
+    git add -A && git commit -m "$commit_message"
+  fi
+
+  local commit_status=$?
+  [[ $commit_status -ne 0 ]] && return $commit_status
+
+  if [[ "$nopush" != true ]]; then
+    git push origin HEAD
+  fi
+}

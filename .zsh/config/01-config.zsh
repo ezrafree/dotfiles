@@ -10,8 +10,16 @@ export FZFSEARCH_EDITOR="code"
 
 ##################################################
 
+# PATH
+
 # add homebrew to PATH
 export PATH="/opt/homebrew/bin:$PATH"
+
+# add volta to PATH
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+##################################################
 
 # disable command auto-correction
 unsetopt CORRECT

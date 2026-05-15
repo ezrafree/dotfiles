@@ -20,7 +20,7 @@
   df = diff -- . ':(exclude)yarn.lock'
   fe = fetch
 
-	me = merge
+  me = merge
   dt = difftool
   mt = mergetool
   lg = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short

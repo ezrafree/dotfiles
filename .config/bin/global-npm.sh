@@ -8,6 +8,7 @@ packages=(
   generator-code
   @vscode/vsce
   openclaw
+  auth0-deploy-cli
 )
 
 for package in "${packages[@]}"; do
