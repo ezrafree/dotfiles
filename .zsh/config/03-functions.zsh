@@ -232,6 +232,7 @@ commit() {
   local type=""
   local scope=""
   local description=""
+  local all=false
   local noadd=false
   local nopush=false
   local debug=false
@@ -261,6 +262,10 @@ commit() {
         ;;
       --description=*|--message=*)
         description="${1#*=}"
+        shift
+        ;;
+      -A|--all)
+        all=true
         shift
         ;;
       -a|--noadd)
@@ -311,8 +316,10 @@ commit() {
 
   if [[ "$noadd" == true ]]; then
     git commit -m "$commit_message"
-  else
+  elif [[ "$all" == true ]]; then
     git add -A && git commit -m "$commit_message"
+  else
+    git commit -am "$commit_message"
   fi
 
   local commit_status=$?
