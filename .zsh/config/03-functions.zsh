@@ -326,6 +326,19 @@ commit() {
   [[ $commit_status -ne 0 ]] && return $commit_status
 
   if [[ "$nopush" != true ]]; then
-    git push origin HEAD
+    if git rev-parse --abbrev-ref --symbolic-full-name @{u} >/dev/null 2>&1; then
+      git pull && git push
+    else
+      local current_branch
+
+      current_branch=$(git branch --show-current)
+
+      if [[ -z "$current_branch" ]]; then
+        echo "Cannot push without an upstream from a detached HEAD."
+        return 1
+      fi
+
+      git push -u origin "$current_branch"
+    fi
   fi
 }
