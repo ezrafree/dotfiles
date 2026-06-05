@@ -287,6 +287,18 @@ commit() {
     esac
   done
 
+  # Parse conventional commit format: type(scope): description
+  if [[ -z "$type" && ${#positional[@]} -eq 1 ]] && [[ "$positional[1]" =~ '^([a-z]+)\(([^)]*)\): *(.+)$' ]]; then
+    type="${match[1]}"
+    scope="${match[2]}"
+    description="${match[3]}"
+
+    # Auto-enable --all if description hints at untracked files
+    if [[ "$description" =~ '(untracked|new files|include)' ]]; then
+      all=true
+    fi
+  fi
+
   [[ -z "$type" ]] && type="${positional[1]}"
   [[ -z "$scope" ]] && scope="${positional[2]}"
   [[ -z "$description" ]] && description="${positional[3,-1]}"

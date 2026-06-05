@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 packages=(
-  @anthropic-ai/claude-code
   @openai/codex
   np
   yo

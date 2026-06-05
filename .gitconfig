@@ -63,3 +63,12 @@
   line-numbers = false
   decorations = false
   keep-plus-minus-markers = true
+
+[color]
+    ui = auto
+
+[color "status"]
+    changed = yellow
+    untracked = cyan
+    branch = magenta bold
+    header = dim

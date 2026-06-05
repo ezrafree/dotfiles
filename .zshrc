@@ -30,3 +30,11 @@ source $BREW_PREFIX/zsh-history-substring-search/share/zsh-history-substring-sea
 
 # initialize the fast-syntax-highlighting plugin (must be last)
 source $BREW_PREFIX/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+# <<< grok installer <<<
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/ezra/.local/bin:$PATH"
