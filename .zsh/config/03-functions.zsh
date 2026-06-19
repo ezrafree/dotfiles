@@ -82,32 +82,46 @@ fi
 
 # map rm to trash while allowing (but ignoring) additional flags but preserving -v
 # usage: $ rm -rfv <file | directory>
+#
+# heavy + regenerable dirs (node_modules, ...) are pulled aside onto their own
+# volume and deleted in the background, so they never bloat the Trash and you
+# never wait on a slow empty. everything else is trashed (recoverable) as usual.
 if has trash; then
   unalias rm 2>/dev/null
 
-  function rm {
-    local verbose=0
-    local files=()
-    local parsing_flags=1
-    local arg
+  typeset -ga RM_PURGE_DIRS=(node_modules)
 
+  # Writable scratch dir on the SAME volume as $1, so the move is an instant rename.
+  # NOTE: must use /usr/bin/stat (BSD) explicitly -- GNU coreutils stat may shadow it
+  # on PATH, and there `-f` means --file-system, which breaks the `%d` device lookup.
+  _rm_stage_base() {
+    local target="${1:A}" dev base root
+    dev=$(/usr/bin/stat -f '%d' "$target" 2>/dev/null) || return 1
+    if [[ "$dev" == "$(/usr/bin/stat -f '%d' "$HOME" 2>/dev/null)" ]]; then
+      base="$HOME/.cache/rm-purge"                 # boot/data volume
+    else
+      root="$target"                               # walk up to the volume's mount point
+      while [[ "${root:h}" != "$root" \
+               && "$(/usr/bin/stat -f '%d' "${root:h}" 2>/dev/null)" == "$dev" ]]; do
+        root="${root:h}"
+      done
+      base="$root/.cache/rm-purge"                 # e.g. /Volumes/External/.cache/rm-purge
+    fi
+    command mkdir -p "$base" 2>/dev/null || return 1
+    [[ "$(/usr/bin/stat -f '%d' "$base" 2>/dev/null)" == "$dev" ]] || return 1   # confirm same volume
+    print -r -- "$base"
+  }
+
+  function rm {
+    local verbose=0 files=() parsing_flags=1 arg
     for arg in "$@"; do
       if (( parsing_flags )); then
         case "$arg" in
-          --)
-            parsing_flags=0
-            ;;
-          --verbose)
-            verbose=1
-            ;;
-          -[!-]*)
-            [[ "$arg" == *v* ]] && verbose=1
-            ;;
-          -*)
-            ;;
-          *)
-            files+=("$arg")
-            ;;
+          --)        parsing_flags=0 ;;
+          --verbose) verbose=1 ;;
+          -[!-]*)    [[ "$arg" == *v* ]] && verbose=1 ;;
+          -*)        ;;
+          *)         files+=("$arg") ;;
         esac
       else
         files+=("$arg")
@@ -116,10 +130,48 @@ if has trash; then
 
     (( ${#files[@]} == 0 )) && return 1
 
+    local -a find_expr=( -type d '(' )
+    local d first=1
+    for d in "${RM_PURGE_DIRS[@]}"; do
+      (( first )) || find_expr+=(-o)
+      find_expr+=(-name "$d"); first=0
+    done
+    find_expr+=( ')' -prune -print )
+
+    # Pull regenerable dirs aside on their own volume, then delete in the background.
+    # Same-volume move = instant; if we can't stage same-volume, delete in place (sync).
+    local -a staged
+    local -i n=0
+    local f nm base
+    for f in "${files[@]}"; do
+      [[ -d "$f" ]] || continue
+      local -a hits=("${(@f)$(find "$f" "${find_expr[@]}" 2>/dev/null)}")
+      for nm in "${hits[@]}"; do
+        [[ -n "$nm" && -d "$nm" ]] || continue
+        if base=$(_rm_stage_base "$nm") && command mv "$nm" "$base/$$.$n" 2>/dev/null; then
+          staged+=("$base/$$.$n"); (( n++ ))
+        else
+          /bin/rm -rf "$nm" 2>/dev/null
+        fi
+      done
+    done
+
+    if (( ${#staged} )); then
+      print "rm: purging ${#staged} ${RM_PURGE_DIRS[*]} dir(s) in background"
+      /bin/rm -rf "${staged[@]}" 2>/dev/null &!
+    fi
+
+    # trash whatever survives (the source; drops args fully removed above)
+    local -a to_trash
+    for f in "${files[@]}"; do
+      [[ -e "$f" || -L "$f" ]] && to_trash+=("$f")
+    done
+    (( ${#to_trash} == 0 )) && return 0
+
     if (( verbose )); then
-      command trash -v "${files[@]}"
+      command trash -v "${to_trash[@]}"
     else
-      command trash "${files[@]}"
+      command trash "${to_trash[@]}"
     fi
   }
 fi
