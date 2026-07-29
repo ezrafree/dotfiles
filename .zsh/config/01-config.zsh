@@ -19,6 +19,9 @@ export PATH="/opt/homebrew/bin:$PATH"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+# add ~/.local/bin to PATH
+export PATH="$HOME/.local/bin:$PATH"
+
 ##################################################
 
 # disable command auto-correction
