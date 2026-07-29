@@ -11,3 +11,5 @@ __MACOSX
 Thumbs.db
 ehthumbs.db
 .dccache
+
+**/.claude/settings.local.json

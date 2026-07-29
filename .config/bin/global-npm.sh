@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 packages=(
-  @anthropic-ai/claude-code
   @openai/codex
+  @google/gemini-cli
+  @github/copilot
+  openclaw
   np
   yo
   generator-code
   @vscode/vsce
-  openclaw
   auth0-deploy-cli
 )
 

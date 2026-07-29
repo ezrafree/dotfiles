@@ -2,7 +2,7 @@
 
 mas_apps=(
   "497799835:Xcode"
-  "6714467650:Perplexity"
+  # "6714467650:Perplexity" <-- no longer available... https://www.perplexity.ai/personal-computer
 )
 
 installed=$(mas list)

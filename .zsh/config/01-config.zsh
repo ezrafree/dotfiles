@@ -2,6 +2,8 @@
 
 ##################################################
 
+# MY CUSTOM CONFIG OPTIONS
+
 # set this to either "eza" or "lsd" or an empty string to use normal "ls"
 CUSTOM_LS_COMMAND="lsd"
 
@@ -22,7 +24,18 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 # add ~/.local/bin to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
+# add pyenv paths to PATH
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
+# initialize pyenv (disabled for faster startup; uncomment if you need shims/version switching)
+# eval "$(pyenv init -)"
+
+# add gnubin to PATH
+export PATH="$BREW_PREFIX/coreutils/libexec/gnubin:$PATH"
+
 ##################################################
+
+# CONFIG
 
 # disable command auto-correction
 unsetopt CORRECT
@@ -44,18 +57,6 @@ autoload -Uz compinit && compinit
 export GIT_EDITOR="nvim -f"
 export VISUAL=nvim
 export EDITOR=nvim
-
-# configure pyenv root
-export PYENV_ROOT="$HOME/.pyenv"
-
-# add pyenv paths to PATH
-export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
-
-# initialize pyenv (disabled for faster startup; uncomment if you need shims/version switching)
-# eval "$(pyenv init -)"
-
-# add gnubin to PATH
-export PATH="$BREW_PREFIX/coreutils/libexec/gnubin:$PATH"
 
 # configure fuzzy finder (fzf) shell integration
 source <(fzf --zsh)

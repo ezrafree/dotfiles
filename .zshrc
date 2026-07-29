@@ -19,6 +19,10 @@ for file in ~/.zsh/config/*.zsh; do
   source "$file"
 done
 
+# clean up any leftover rm-purge staging dirs from interrupted background deletes
+# (subshell sets null_glob so empty matches vanish instead of erroring)
+( setopt null_glob; /bin/rm -rf -- "$HOME"/.cache/rm-purge/* /Volumes/*/.cache/rm-purge/* ) 2>/dev/null &!
+
 # load the powerlevel10k config. to reconfigure, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -30,3 +34,17 @@ source $BREW_PREFIX/zsh-history-substring-search/share/zsh-history-substring-sea
 
 # initialize the fast-syntax-highlighting plugin (must be last)
 source $BREW_PREFIX/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/ezra/.local/bin:$PATH"
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+fpath=(~/.grok/completions/zsh $fpath)
+autoload -Uz compinit && compinit -C
+# <<< grok installer <<<
+
+# Added by Antigravity IDE
+export PATH="/Users/ezra/.antigravity-ide/antigravity-ide/bin:$PATH"
