@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 packages=(
-  @openai/codex
-  @google/gemini-cli
   @github/copilot
   openclaw
   np

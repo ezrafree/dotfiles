@@ -69,3 +69,16 @@ eval "$(zoxide init zsh)"
 # use ↑/↓ to cycle through history matching current input
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+# use ctrl-e to backspace through words but stop at $WORDCHARS
+bindkey -M viins '^E' vi-backward-kill-word
+bindkey '^E' vi-backward-kill-word
+
+# use ctrl-w to jump entire words when backspacing
+bindkey -M viins '^W' backward-kill-word
+bindkey '^W' backward-kill-word
+
+# clear text between quotes with ctrl-x, ctrl-z
+zle -N clear-between-quotes
+bindkey -M emacs '^X^Z' clear-between-quotes
+bindkey -M viins '^X^Z' clear-between-quotes

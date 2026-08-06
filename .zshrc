@@ -48,3 +48,6 @@ autoload -Uz compinit && compinit -C
 
 # Added by Antigravity IDE
 export PATH="/Users/ezra/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# kimi-code
+export PATH="/Users/ezra/.kimi-code/bin:$PATH"

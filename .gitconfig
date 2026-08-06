@@ -21,6 +21,7 @@
   co = checkout
   fe = fetch
   me = merge
+  sw = switch
 
   df = "!f() { git diff \"$@\" -- . ':(exclude)yarn.lock'; }; f"
   dt = difftool
@@ -30,7 +31,7 @@
   lga = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --all
   ld = log --full-diff -p --date=short
 
-  wt = worktree list
+  wt = worktree
 
 [merge]
   tool = vscode
@@ -78,3 +79,5 @@
     untracked = cyan
     branch = magenta bold
     header = dim
+[log]
+	date = format-local:%Y-%m-%d %I:%M:%S %p

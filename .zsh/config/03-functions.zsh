@@ -406,3 +406,30 @@ commit() {
     fi
   fi
 }
+
+clear-between-quotes() {
+  local buf="$BUFFER"
+  local i quote_char open=-1 close=-1
+
+  # scan backward from the end to find the last quote character
+  for (( i = ${#buf}; i >= 1; i-- )); do
+    if [[ "${buf[$i]}" == "'" || "${buf[$i]}" == '"' ]]; then
+      close=$i
+      quote_char="${buf[$i]}"
+      break
+    fi
+  done
+  (( close == -1 )) && { zle -M "No quote found"; return }
+
+  # scan further back for the matching opening quote of the same type
+  for (( i = close - 1; i >= 1; i-- )); do
+    if [[ "${buf[$i]}" == "$quote_char" ]]; then
+      open=$i
+      break
+    fi
+  done
+  (( open == -1 )) && { zle -M "No matching opening quote"; return }
+
+  BUFFER="${buf[1,open]}${buf[close,${#buf}]}"
+  CURSOR=$open
+}
