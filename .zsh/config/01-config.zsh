@@ -21,6 +21,9 @@ export PATH="/opt/homebrew/bin:$PATH"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+# add ~/.local/bin to PATH
+export PATH="$HOME/.local/bin:$PATH"
+
 # add pyenv paths to PATH
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
@@ -29,9 +32,6 @@ export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
 
 # add gnubin to PATH
 export PATH="$BREW_PREFIX/coreutils/libexec/gnubin:$PATH"
-
-# claude code
-export PATH="$HOME/.local/bin:$PATH"
 
 ##################################################
 

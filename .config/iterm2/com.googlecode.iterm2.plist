@@ -17,15 +17,13 @@
 	<key>AIVectorStore</key>
 	<integer>0</integer>
 	<key>AiMaxTokens</key>
-	<integer>1050000</integer>
+	<integer>400000</integer>
 	<key>AiModel</key>
-	<string>gpt-5.5</string>
+	<string>gpt-5.2</string>
 	<key>AiResponseMaxTokens</key>
 	<integer>128000</integer>
 	<key>AitermURL</key>
 	<string>https://api.openai.com/v1/responses</string>
-	<key>AllowClipboardAccess</key>
-	<true/>
 	<key>BrowserProfiles</key>
 	<false/>
 	<key>Default Arrangement Name</key>
