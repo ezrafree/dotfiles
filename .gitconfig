@@ -31,7 +31,12 @@
   lga = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --all
   ld = log --full-diff -p --date=short
 
-  wt = worktree
+  wt = "!f() { : git worktree ; cd \"${GIT_PREFIX:-.}\" && \
+      case \"$1\" in \
+          rm) shift; git worktree remove \"$@\" ;; \
+          ls) shift; git worktree list \"$@\" ;; \
+          *)  git worktree \"$@\" ;; \
+      esac; }; f"
 
 [merge]
   tool = vscode

@@ -5,6 +5,16 @@ cfg() {
   /usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
 }
 
+# pull the latest changes for my ~/.config repos
+cfgup() {
+  local repo
+
+  for repo in ~/.config/phoenix ~/.config/karabiner; do
+    echo "==> ${repo:t}"
+    git -C "$repo" pull
+  done
+}
+
 # make a directory and cd into it
 mkcd() { mkdir -p "$1" && cd "$1"; }
 
