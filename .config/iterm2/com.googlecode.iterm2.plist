@@ -28,6 +28,35 @@
 	<true/>
 	<key>BrowserProfiles</key>
 	<false/>
+	<key>ClaudeCodeTriggersInstalled</key>
+	<true/>
+	<key>CodeReviewSavedPrompts</key>
+	<data>
+	W3sidXVpZCI6IjI4N0ZGQUM0LTE5N0YtNEQ0Qi1BRDgyLTFDOERGRkE5MEUxQSIsIm5h
+	bWUiOiJEZWZhdWx0IiwidGV4dCI6IlJldmlldyB0aGUgcGVuZGluZyBjaGFuZ2VzIGlu
+	IHRoaXMgcmVwby4gRmxhZyBpc3N1ZXMgYSBjYXJlZnVsIG1haW50YWluZXIgd291bGQg
+	YmxvY2sgb24gYmVmb3JlIG1lcmdlLCBpbiByb3VnaGx5IHRoaXMgb3JkZXI6XG4gIDEu
+	IENvcnJlY3RuZXNzIOKAlCBsb2dpYyBlcnJvcnMsIGJyb2tlbiBpbnZhcmlhbnRzLCBt
+	aXNzZWQgZWRnZSBjYXNlcywgb2ZmLWJ5LW9uZSwgcmFjZXMsIGxpZmV0aW1lXC9tZW1v
+	cnkgYnVncywgZXJyb3IgcGF0aHMgdGhhdCBzd2FsbG93IGZhaWx1cmVzLlxuICAyLiBT
+	ZWN1cml0eSDigJQgaW5qZWN0aW9uLCBhdXRoblwvYXV0aHogbWlzdGFrZXMsIHNlY3Jl
+	dCBoYW5kbGluZywgdW5zYWZlIGRlc2VyaWFsaXphdGlvbiwgdW5zYWZlIGRlZmF1bHRz
+	LCBUT0NUT1UuXG4gIDMuIFJlbGlhYmlsaXR5ICYgcGVyZm9ybWFuY2Ug4oCUIGJsb2Nr
+	aW5nIHRoZSB3cm9uZyB0aHJlYWQsIHVuYm91bmRlZCByZXNvdXJjZSB1c2UsIGFjY2lk
+	ZW50YWwgTyhOwrIpLCByZXRyaWVzIHdpdGhvdXQgYmFja29mZiwgc2lsZW50IGZhaWx1
+	cmUgcGF0aHMuXG4gIDQuIENvbnRyYWN0IHJpc2sg4oCUIGJlaGF2aW9yIGNoYW5nZXMg
+	Y2FsbGVycyByZWx5IG9uLCBzaWxlbnRseSBjaGFuZ2VkIGRlZmF1bHRzLCBicm9rZW4g
+	YmFja3dhcmQgY29tcGF0aWJpbGl0eSwgbWlzc2luZyBtaWdyYXRpb25zLlxuXG5Gb3Ig
+	ZWFjaCBmaW5kaW5nIGNpdGUgYGZpbGU6bGluZWAsIGV4cGxhaW4gKndoeSogaXQgaXMg
+	d3JvbmcgKG5vdCB3aGF0IHRoZSBjb2RlIGRvZXMpLCBhbmQgcHJvcG9zZSBhIGNvbmNy
+	ZXRlIGZpeCB3aGVuIG9uZSBpcyBvYnZpb3VzLiBCZSBjYWxpYnJhdGVkOiBpZiBhIGZp
+	bmRpbmcgaXMgbm90IGhpZ2gtY29uZmlkZW5jZSwgc2F5IHNvIG9yIHNraXAgaXQuIFZl
+	cmlmeSBjbGFpbXMgYWdhaW5zdCB0aGUgYWN0dWFsIGNvZGUgcmF0aGVyIHRoYW4gaW5m
+	ZXJyaW5nIGZyb20gbmFtZXMuXG5cblNraXAgcHVyZSBzdHlsZSwgZm9ybWF0dGluZywg
+	bmFtaW5nLCBhbmQgYW55dGhpbmcgYSBsaW50ZXIgb3IgQ0kgYWxyZWFkeSBlbmZvcmNl
+	cy5cblxuSWYgeW91IGZpbmQgbm90aGluZyB3b3J0aCBmaXhpbmcsIHNheSBzbyBwbGFp
+	bmx5LiJ9XQ==
+	</data>
 	<key>Default Arrangement Name</key>
 	<string>Arrangement</string>
 	<key>Default Bookmark Guid</key>
@@ -36,6 +65,8 @@
 	<string>B9CD49C5-2478-4B91-A657-9E37DB9C134D</string>
 	<key>DimInactiveSplitPanes</key>
 	<false/>
+	<key>EnableAPIServer</key>
+	<true/>
 	<key>GlobalKeyMap</key>
 	<dict>
 		<key>0x19-0x60000</key>
@@ -1325,6 +1356,53 @@
 			<string>xterm-256color</string>
 			<key>Transparency</key>
 			<real>0.0</real>
+			<key>Triggers</key>
+			<array>
+				<dict>
+					<key>action</key>
+					<string>iTermEnterWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+					</dict>
+					<key>matchType</key>
+					<integer>113</integer>
+					<key>parameter</key>
+					<string>builtin.claudeCode</string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermExitWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+						<key>leaderOnly</key>
+						<true/>
+					</dict>
+					<key>matchType</key>
+					<integer>114</integer>
+					<key>parameter</key>
+					<string></string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
+			</array>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -1393,11 +1471,22 @@
 	<key>PromptOnQuit</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<false/>
+	<true/>
 	<key>ShowPaneTitles</key>
 	<false/>
 	<key>SoundForEsc</key>
 	<false/>
+	<key>StatusMergeWorkgroups</key>
+	<false/>
+	<key>StatusPriorityEntries</key>
+	<data>
+	W3sicGF0dGVybiI6IndhaXQiLCJub3RpZnkiOnRydWV9LHsicGF0dGVybiI6Indvcmsi
+	LCJub3RpZnkiOnRydWV9LHsicGF0dGVybiI6ImlkbGUiLCJub3RpZnkiOnRydWV9XQ==
+	</data>
+	<key>ToolbeltTools</key>
+	<array>
+		<string>Session Status</string>
+	</array>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>Window Arrangements</key>
@@ -4019,6 +4108,37 @@
 	</dict>
 	<key>WindowPlacement</key>
 	<integer>2</integer>
+	<key>Workgroups</key>
+	<data>
+	W3sibmFtZSI6IkNsYXVkZSBDb2RlIiwic2Vzc2lvbnMiOlt7ImNvbW1hbmQiOiIiLCJ0
+	b29sYmFySXRlbXMiOlt7ImtpbmQiOiJtb2RlU3dpdGNoZXIifSx7ImtpbmQiOiJnaXRT
+	dGF0dXMifSx7ImtpbmQiOiJhdXRvUmVxdWVzdFJldmlld1doZW5JZGxlIn1dLCJtb2Rl
+	IjoicmVndWxhciIsInVybFN0cmluZyI6IiIsImRpc3BsYXlOYW1lIjoiQ2hhdCIsInVu
+	aXF1ZUlkZW50aWZpZXIiOiJidWlsdGluLmNsYXVkZUNvZGUubWFpbiIsImtpbmQiOnsi
+	a2luZCI6InJvb3QifSwicGVyRmlsZUNvbW1hbmQiOiIifSx7ImNvbW1hbmQiOiJnaXQg
+	ZGlmZnRvb2wgLXkgLXggdmltZGlmZiBcXChnaXRCYXNlKSIsInRvb2xiYXJJdGVtcyI6
+	W3sia2luZCI6Im1vZGVTd2l0Y2hlciJ9LHsia2luZCI6ImNoYW5nZWRGaWxlU2VsZWN0
+	b3IifSx7ImtpbmQiOiJnaXRCYXNlU2VsZWN0b3IifSx7ImJhY2tTaG9ydGN1dCI6eyJz
+	ZXJpYWxpemVkIjoiMHhmNzAyLTB4MzQwMDAwLTB4N2IifSwia2luZCI6Im5hdmlnYXRp
+	b24iLCJmb3J3YXJkU2hvcnRjdXQiOnsic2VyaWFsaXplZCI6IjB4ZjcwMy0weDM0MDAw
+	MC0weDdjIn0sInJlbG9hZFNob3J0Y3V0Ijp7InNlcmlhbGl6ZWQiOiIweDcyLTB4MTAw
+	MDAwLTB4ZiJ9fV0sIm1vZGUiOiJkaWZmIiwidXJsU3RyaW5nIjoiIiwiZGlzcGxheU5h
+	bWUiOiJEaWZmIiwidW5pcXVlSWRlbnRpZmllciI6ImJ1aWx0aW4uY2xhdWRlQ29kZS5k
+	aWZmIiwicGFyZW50SUQiOiJidWlsdGluLmNsYXVkZUNvZGUubWFpbiIsImtpbmQiOnsi
+	a2luZCI6InBlZXIifSwicGVyRmlsZUNvbW1hbmQiOiJnaXQgZGlmZnRvb2wgLXkgLXgg
+	dmltZGlmZiBcXChnaXRCYXNlKSAtLSBcXChmaWxlKSJ9LHsiY29tbWFuZCI6ImNsYXVk
+	ZSBcXChjb2RlUmV2aWV3UHJvbXB0KSAtLWFwcGVuZC1zeXN0ZW0tcHJvbXB0LWZpbGUg
+	J1xcKGNvZGVSZXZpZXdTeXN0ZW1Qcm9tcHRGaWxlKScgLS1zZXR0aW5ncyAnXFwoaXRl
+	cm0yLmFwcEJ1bmRsZVBhdGgpXC9Db250ZW50c1wvUmVzb3VyY2VzXC9jb2RlLXJldmll
+	dy1zZXR0aW5ncy50eHQnIiwidG9vbGJhckl0ZW1zIjpbeyJraW5kIjoibW9kZVN3aXRj
+	aGVyIn0seyJraW5kIjoicmVsb2FkIiwic2hvcnRjdXQiOnsic2VyaWFsaXplZCI6IjB4
+	NzItMHgxMDAwMDAtMHhmIn19LHsia2luZCI6ImF1dG9TZW5kQ2xpcHBpbmdzV2hlbklk
+	bGUifV0sIm1vZGUiOiJjb2RlUmV2aWV3IiwidXJsU3RyaW5nIjoiIiwiZGlzcGxheU5h
+	bWUiOiJDb2RlIFJldmlldyIsInVuaXF1ZUlkZW50aWZpZXIiOiJidWlsdGluLmNsYXVk
+	ZUNvZGUucmV2aWV3IiwicGFyZW50SUQiOiJidWlsdGluLmNsYXVkZUNvZGUubWFpbiIs
+	ImtpbmQiOnsia2luZCI6InBlZXIifSwicGVyRmlsZUNvbW1hbmQiOiIifV0sInVuaXF1
+	ZUlkZW50aWZpZXIiOiJidWlsdGluLmNsYXVkZUNvZGUifV0=
+	</data>
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 </dict>

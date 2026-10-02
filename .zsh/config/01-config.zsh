@@ -82,3 +82,16 @@ bindkey '^W' backward-kill-word
 zle -N clear-between-quotes
 bindkey -M emacs '^X^Z' clear-between-quotes
 bindkey -M viins '^X^Z' clear-between-quotes
+
+# periodically refresh prompt to update gitstatus
+TRAPALRM() {
+  local f
+  for f in chpwd "${chpwd_functions[@]}" precmd "${precmd_functions[@]}"; do
+    [[ "${+functions[$f]}" == 0 ]] || "$f" &>/dev/null || true
+  done
+  p10k display -r
+}
+TMOUT=30 # Invoke TRAPALRM every n seconds.
+
+# Make Ctrl-W / Option-Backspace stop at slashes
+WORDCHARS=${WORDCHARS//\/}
