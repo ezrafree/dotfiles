@@ -443,3 +443,8 @@ clear-between-quotes() {
   BUFFER="${buf[1,open]}${buf[close,${#buf}]}"
   CURSOR=$open
 }
+
+backward-kill-subword() {
+  local WORDCHARS=${WORDCHARS//[\/-]}
+  zle backward-kill-word
+}

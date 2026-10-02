@@ -70,13 +70,14 @@ eval "$(zoxide init zsh)"
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# use ctrl-e to backspace through words but stop at $WORDCHARS
-bindkey -M viins '^E' vi-backward-kill-word
-bindkey '^E' vi-backward-kill-word
+# use ctrl-e to jump entire words when backspacing
+bindkey -M viins '^E' backward-kill-word
+bindkey '^E' backward-kill-word
 
-# use ctrl-w to jump entire words when backspacing
-bindkey -M viins '^W' backward-kill-word
-bindkey '^W' backward-kill-word
+# use ctrl-w to backspace through words but stop at / and -
+zle -N backward-kill-subword
+bindkey -M viins '^W' backward-kill-subword
+bindkey '^W' backward-kill-subword
 
 # clear text between quotes with ctrl-x, ctrl-z
 zle -N clear-between-quotes
@@ -92,6 +93,3 @@ TRAPALRM() {
   p10k display -r
 }
 TMOUT=30 # Invoke TRAPALRM every n seconds.
-
-# Make Ctrl-W / Option-Backspace stop at slashes
-WORDCHARS=${WORDCHARS//\/}
