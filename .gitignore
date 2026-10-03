@@ -57,7 +57,8 @@
 !.npmrc
 
 !Applications/
-!Applications/**
+!Applications/Clear Downloads.app/
+!Applications/Clear Downloads.app/**
 
 # explicitly ignore these files...
 
@@ -66,5 +67,6 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+.DS_Store
 
 # eof
