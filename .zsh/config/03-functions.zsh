@@ -199,6 +199,7 @@ if has git; then
     local commit_msg="updates"
     local oldpwd="$PWD"
     local -a cmd
+    local -a add_flags=(-v)
 
     # argument parsing
     if (( $# == 1 )); then
@@ -216,12 +217,13 @@ if has git; then
 
     if [[ "$PWD" == "$HOME" ]]; then
       cmd=(/usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME")
+      add_flags+=(-u)
     else
       cmd=(git)
     fi
 
     "${cmd[@]}" pull
-    "${cmd[@]}" add -v .
+    "${cmd[@]}" add "${add_flags[@]}" .
 
     if "${cmd[@]}" diff --cached --quiet; then
       echo "nothing to commit"

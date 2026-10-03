@@ -57,6 +57,7 @@
 !.npmrc
 
 !Applications/
+!Applications/README.md
 !Applications/Clear Downloads.app/
 !Applications/Clear Downloads.app/**
 
@@ -67,6 +68,21 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
 .DS_Store
+.DS_Store?
+**/.DS_Store
+.AppleDouble
+.LSOverride
+*~
+._*
+.Spotlight-V100
+.Trashes
+__MACOSX
+Thumbs.db
+ehthumbs.db
+.dccache
+
+**/.claude/settings.local.json
 
 # eof

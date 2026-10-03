@@ -208,6 +208,31 @@ The following is the list of other config files in the `~/` directory which are 
 └── README.md
 ```
 
+## Pull-Only Config
+
+To use this dotfiles on a system in a pull-only configuration (ie. to pull down changes from this repo, but never commit changes back to it), first make sure to clone the repo over `https` and not over `ssh`.
+
+Then set the remote to `no_push`.
+
+```sh
+cfg remote set-url --push origin no_push
+```
+
+Then configure pulls to only fast-forwards, to avoid merges.
+
+```sh
+cfg config pull.ff only
+```
+
+Finally, create a pre-commit hook at `.dotfiles/hooks/pre-commit`
+
+```sh
+#!/bin/sh
+echo "dotfiles are pull-only on this machine, so commits are blocked" >&2
+echo "run 'cfg reset' to unstage anything that got added" >&2
+exit 1
+```
+
 ## Uninstall Instructions
 
 To uninstall, you can simply delete the `.dotfiles` directory
