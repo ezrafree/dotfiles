@@ -450,3 +450,100 @@ backward-kill-subword() {
   local WORDCHARS=${WORDCHARS//[\/-]}
   zle backward-kill-word
 }
+
+# awake — keep the Mac from idle-sleeping for a while
+#   awake 4h · awake 90m · awake 1h30 · awake 45 (minutes) · awake 30s
+#   awake 4am · awake 4:30pm · awake 16:00   until the next time the clock hits that
+#   awake make build                         until that command finishes
+#   awake 2h -d   extra flags pass through to caffeinate (-d also keeps the display on)
+#   awake         no duration: stay awake until Ctrl-C
+awake() {
+  zmodload -F zsh/datetime b:strftime p:EPOCHSECONDS
+
+  # Command mode: run it in this shell (so aliases and functions work, with your
+  # own shell options) and hold a sleep assertion until it exits, however it exits.
+  if [[ -n $1 && $1 != -* ]] && whence -- "$1" >/dev/null; then
+    local _awake_took
+    integer _awake_start=$EPOCHSECONDS _awake_pid _awake_secs
+    print "☕ Awake until $1 finishes"
+    caffeinate -i -w $$ &!   # -w $$: also lets go if this terminal is closed
+    _awake_pid=$!
+    {
+      eval "${(q-)@}"
+    } always {
+      kill $_awake_pid 2>/dev/null
+      _awake_secs=$(( EPOCHSECONDS - _awake_start ))
+      (( _awake_secs >= 3600 )) && _awake_took+="$(( _awake_secs / 3600 ))h"
+      (( _awake_secs >= 60 ))   && _awake_took+="$(( _awake_secs % 3600 / 60 ))m"
+      (( _awake_secs < 3600 ))  && _awake_took+="$(( _awake_secs % 60 ))s"
+      print "☕ $1 done after $_awake_took — Mac can sleep again"
+    }
+    return
+  fi
+
+  emulate -L zsh -o no_bash_rematch
+
+  if [[ -z $1 || $1 == -* ]]; then
+    print "☕ Awake until Ctrl-C"
+    caffeinate -i "$@"
+    return
+  fi
+
+  local arg=${(L)1} usage="usage: awake [4h | 1h30 | 45m | 4am | 4:30pm | 16:00 | <command>] [caffeinate flags]"
+  local day today tomorrow end
+  integer now=$EPOCHSECONDS total=0 h=-1 m stop
+  shift
+
+  if [[ $arg =~ '^([0-9]{1,2})(:([0-9]{2}))?([ap])m?$' ]]; then
+    # 12-hour clock: 4am, 4:30pm, 11p
+    h=$match[1] m=${match[3]:-0}
+    (( h >= 1 && h <= 12 && m < 60 )) || { print -u2 $usage; return 1 }
+    (( h %= 12 ))
+    [[ $match[4] == p ]] && (( h += 12 ))
+  elif [[ $arg =~ '^([0-9]{1,2}):([0-9]{2})$' ]]; then
+    # 24-hour clock: 16:00, 0:30
+    h=$match[1] m=$match[2]
+    (( h < 24 && m < 60 )) || { print -u2 $usage; return 1 }
+  else
+    # duration: 4h, 90m, 1h30, 30s
+    local rest=$arg
+    while [[ $rest =~ '^([0-9]+)([hms]?)(.*)$' ]]; do
+      case $match[2] in
+        h)    (( total += match[1] * 3600 )) ;;
+        m|'') (( total += match[1] * 60 )) ;;
+        s)    (( total += match[1] )) ;;
+      esac
+      rest=$match[3]
+    done
+    if [[ -n $rest ]] || (( total == 0 )); then
+      print -u2 $usage
+      return 1
+    fi
+  fi
+
+  strftime -s today    '%Y-%m-%d' $now
+  strftime -s tomorrow '%Y-%m-%d' $(( now + 86400 ))
+
+  if (( h >= 0 )); then
+    # Next time the clock reads h:m: today if it's still ahead, otherwise tomorrow
+    for day in $today $tomorrow; do
+      strftime -r -s stop '%Y-%m-%d %H:%M' "$day $h:$m"
+      (( stop > now )) && break
+    done
+    total=$(( stop - now ))
+  else
+    stop=$(( now + total ))
+  fi
+
+  strftime -s day '%Y-%m-%d' $stop
+  if [[ $day == $today ]]; then
+    strftime -s end '%L:%M %p' $stop
+  elif [[ $day == $tomorrow ]]; then
+    strftime -s end '%L:%M %p tomorrow' $stop
+  else
+    strftime -s end '%a %L:%M %p' $stop
+  fi
+
+  print "☕ Awake until $end — Ctrl-C to stop early"
+  caffeinate -i -t $total "$@"
+}

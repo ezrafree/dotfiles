@@ -13,3 +13,5 @@ ehthumbs.db
 .dccache
 
 **/.claude/settings.local.json
+
+.webui_secret_key
