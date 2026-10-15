@@ -17,6 +17,7 @@ alias cdc='cd; clear'
 # git convenience shortcuts
 alias pdev='git co dev && git pull'
 alias pmain='git co main && git pull'
+alias push='git pull && git push'
 alias gco='git branch | fzf | xargs git checkout'
 alias stash='git stash --include-untracked'
 alias logdiff='git log --full-diff -p'
