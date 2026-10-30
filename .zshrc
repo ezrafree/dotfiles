@@ -49,3 +49,6 @@ export PATH="/Users/ezra/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 # kimi-code
 export PATH="/Users/ezra/.kimi-code/bin:$PATH"
+
+# added by harness installer
+export PATH="$HOME/.local/bin:$PATH"

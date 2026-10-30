@@ -76,7 +76,7 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
-		<key>0x19-0x60000-0x30</key>
+		<key>0x19-0x60000-0x30-0x1</key>
 		<dict>
 			<key>Action</key>
 			<integer>2</integer>
@@ -96,7 +96,7 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
-		<key>0x9-0x40000-0x30</key>
+		<key>0x9-0x40000-0x30-0x1</key>
 		<dict>
 			<key>Action</key>
 			<integer>0</integer>
@@ -1468,6 +1468,8 @@
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>PromptOnQuit</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
@@ -1478,10 +1480,14 @@
 	<false/>
 	<key>StatusMergeWorkgroups</key>
 	<false/>
+	<key>StatusPriorityAddedDoneAndError</key>
+	<true/>
 	<key>StatusPriorityEntries</key>
 	<data>
-	W3sicGF0dGVybiI6IndhaXQiLCJub3RpZnkiOnRydWV9LHsicGF0dGVybiI6Indvcmsi
-	LCJub3RpZnkiOnRydWV9LHsicGF0dGVybiI6ImlkbGUiLCJub3RpZnkiOnRydWV9XQ==
+	W3sibm90aWZ5Ijp0cnVlLCJwYXR0ZXJuIjoid2FpdCJ9LHsibm90aWZ5Ijp0cnVlLCJw
+	YXR0ZXJuIjoiZG9uZSJ9LHsibm90aWZ5Ijp0cnVlLCJwYXR0ZXJuIjoiZXJyb3IifSx7
+	Im5vdGlmeSI6dHJ1ZSwicGF0dGVybiI6IndvcmsifSx7Im5vdGlmeSI6dHJ1ZSwicGF0
+	dGVybiI6ImlkbGUifV0=
 	</data>
 	<key>ToolbeltTools</key>
 	<array>
