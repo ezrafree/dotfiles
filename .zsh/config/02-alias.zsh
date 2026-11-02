@@ -71,8 +71,8 @@ alias lc='fc -ln -1 | pbcopy'
 alias rrm='/bin/rm'
 
 # more memorable versions of `jq` and `yq`
-alias json='jq .'
-alias yaml='yq .'
+command -v jq > /dev/null && alias json='jq .'
+command -v yq > /dev/null && alias yaml='yq .'
 
 # pretty `ls` alternatives
 if [[ "${CUSTOM_LS_COMMAND}" == "eza" ]]; then
