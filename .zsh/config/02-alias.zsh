@@ -35,18 +35,18 @@ alias 'yarn up'='yarn upgrade'
 alias brewupgrade='brew upgrade && brew upgrade --cask --greedy'
 
 # change directory commands
-alias cdwiki='cd ~/code/wiki/'
-alias cdphoenix='cd ~/.config/phoenix/'
+[[ -d "$HOME/code/wiki" ]] && alias cdwiki='cd ~/code/wiki/'
+[[ -d "$HOME/.config/phoenix" ]] && alias cdphoenix='cd ~/.config/phoenix/'
 
 # tail the phoenix window manager logs
-alias logphoenix='cdphoenix && log stream --process Phoenix'
+[[ -d "$HOME/.config/phoenix" ]] && alias logphoenix='cdphoenix && log stream --process Phoenix'
 
 # restart/reload phoenix config
-alias rephoenix='pkill Phoenix && open -a Phoenix'
+[[ -d "$HOME/.config/phoenix" ]] && alias rephoenix='pkill Phoenix && open -a Phoenix'
 
 # sync git repos that I don't care about the commit messages
-alias syncwiki='syncrepo ~/code/wiki'
-alias syncbootstrap='syncrepo ~/code/quietmind-sh'
+[[ -d "$HOME/code/wiki" ]] && alias syncwiki='syncrepo ~/code/wiki'
+[[ -d "$HOME/code/quietmind-sh" ]] && alias syncbootstrap='syncrepo ~/code/quietmind-sh'
 alias synchome='syncrepo ~'
 
 # add default flags to commands
