@@ -42,8 +42,6 @@
 !.config/
 !.config/nvim/
 !.config/nvim/init.vim
-!.config/iterm2/
-!.config/iterm2/com.googlecode.iterm2.plist
 
 !.config/aerial/
 !.config/aerial/prefs.plist
@@ -60,6 +58,12 @@
 !Applications/README.md
 !Applications/Clear Downloads.app/
 !Applications/Clear Downloads.app/**
+
+!Library/
+!Library/Application Support/
+!Library/Application Support/iTerm2/
+!Library/Application Support/iTerm2/DynamicProfiles/
+!Library/Application Support/iTerm2/DynamicProfiles/dotfiles.json
 
 # explicitly ignore these files...
 

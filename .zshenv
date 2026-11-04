@@ -16,4 +16,4 @@ path=(
 
 # configure a user config for npm
 export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
-. "$HOME/.cargo/env"
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
