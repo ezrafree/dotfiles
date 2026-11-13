@@ -30,7 +30,7 @@
 !.vim/settings/01-search.vim
 !.vim/settings/02-swapfiles.vim
 !.vim/settings/03-persistundo.vim
-!.vim/settings/04-indentation.vim
+!.vim/settings/04-formatting.vim
 !.vim/settings/05-markdown.vim
 !.vim/settings/06-nerdtree.vim
 !.vim/settings/07-plugins.vim
