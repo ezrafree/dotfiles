@@ -52,6 +52,9 @@
 !.config/bin/global-npm.sh
 !.config/bin/global-mas.sh
 
+!.config/gh/
+!.config/gh/config.yml
+
 !.npmrc
 
 !Applications/
