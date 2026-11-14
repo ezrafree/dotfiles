@@ -86,3 +86,5 @@
     header = dim
 [log]
 	date = format-local:%Y-%m-%d %I:%M:%S %p
+[url "git@github.com:"]
+	insteadOf = https://github.com/
