@@ -550,3 +550,142 @@ awake() {
   print "☕ Awake until $end — Ctrl-C to stop early"
   caffeinate -i -t $total "$@"
 }
+
+# stage a branch's full diff against a base branch and open it in VS Code for review
+# usage: $ branchreview [base] [repo-path]
+# usage: $ branchreview --done|-d [repo-path]
+branchreview() {
+  if [[ "$1" == "--done" || "$1" == "-d" ]]; then
+    _branchreview_done "${@:2}"
+    return
+  fi
+
+  local base="${1:-main}"
+  local repo="${2:-.}"
+  local top git_dir state_file branch head merge_base
+
+  if [[ -n "$GIT_DIR$GIT_WORK_TREE" ]]; then
+    echo "branchreview: GIT_DIR or GIT_WORK_TREE is set and would override the repo path (unset them first)" >&2
+    return 1
+  fi
+
+  top="$(git -C "$repo" rev-parse --show-toplevel 2>/dev/null)" || {
+    echo "branchreview: '$repo' is not inside a git work tree" >&2
+    return 1
+  }
+  git_dir="$(git -C "$top" rev-parse --absolute-git-dir)" || return 1
+  state_file="$git_dir/branchreview"
+
+  if [[ -e "$state_file" ]]; then
+    echo "branchreview: a review is already in progress in $top (run branchreview --done first)" >&2
+    return 1
+  fi
+
+  branch="$(git -C "$top" symbolic-ref --quiet --short HEAD)" || {
+    echo "branchreview: HEAD is detached in $top (check out the branch to review first)" >&2
+    return 1
+  }
+
+  if [[ -n "$(git -C "$top" status --porcelain --untracked-files=no)" ]]; then
+    echo "branchreview: $top has staged or unstaged changes (commit or stash them first)" >&2
+    return 1
+  fi
+
+  if ! git -C "$top" rev-parse --verify --quiet "${base}^{commit}" >/dev/null; then
+    echo "branchreview: base '$base' does not exist" >&2
+    return 1
+  fi
+
+  if ! has code; then
+    echo "branchreview: VS Code 'code' CLI not found in PATH" >&2
+    return 1
+  fi
+
+  head="$(git -C "$top" rev-parse HEAD)" || return 1
+  merge_base="$(git -C "$top" merge-base "$base" "$head")" || {
+    echo "branchreview: '$base' and '$branch' have no common ancestor" >&2
+    return 1
+  }
+
+  if [[ "$merge_base" == "$head" ]]; then
+    echo "branchreview: '$branch' has no commits that aren't already in '$base'" >&2
+    return 1
+  fi
+
+  if [[ -n "$(git -C "$top" ls-files --others --exclude-standard)" ]]; then
+    echo "branchreview: warning: untracked files will show up alongside the review diff" >&2
+  fi
+
+  print -rl -- "$branch" "$head" > "$state_file" || return 1
+
+  if ! git -C "$top" switch --quiet --detach; then
+    command rm -f -- "$state_file"
+    return 1
+  fi
+
+  if ! git -C "$top" reset --quiet --soft "$merge_base"; then
+    git -C "$top" switch --quiet "$branch" && command rm -f -- "$state_file"
+    return 1
+  fi
+
+  code "$top"
+
+  echo "Reviewing '$branch' against '$base' (merge-base ${merge_base:0:8})"
+  git -C "$top" diff --cached --shortstat
+  echo "In Source Control, hover \"Staged Changes\" and click the \"Open Staged Changes\" button to see all files in one diff."
+  echo "When finished, run: branchreview --done${2:+ ${(q-)top}}"
+}
+
+# restore the branch saved by branchreview (called via `branchreview --done`)
+_branchreview_done() {
+  local repo="${1:-.}"
+  local top git_dir state_file branch head current
+  local -a state
+
+  if [[ -n "$GIT_DIR$GIT_WORK_TREE" ]]; then
+    echo "branchreview --done: GIT_DIR or GIT_WORK_TREE is set and would override the repo path (unset them first)" >&2
+    return 1
+  fi
+
+  top="$(git -C "$repo" rev-parse --show-toplevel 2>/dev/null)" || {
+    echo "branchreview --done: '$repo' is not inside a git work tree" >&2
+    return 1
+  }
+  git_dir="$(git -C "$top" rev-parse --absolute-git-dir)" || return 1
+  state_file="$git_dir/branchreview"
+
+  if [[ ! -f "$state_file" ]]; then
+    echo "branchreview --done: no review in progress in $top" >&2
+    return 1
+  fi
+
+  state=("${(@f)$(<"$state_file")}")
+  branch="${state[1]}"
+  head="${state[2]}"
+
+  if [[ -z "$branch" || -z "$head" ]]; then
+    echo "branchreview --done: saved state in $state_file is invalid" >&2
+    return 1
+  fi
+
+  if current="$(git -C "$top" symbolic-ref --quiet --short HEAD)"; then
+    if [[ "$current" != "$branch" ]]; then
+      echo "branchreview --done: HEAD is on '$current', not the detached review of '$branch' (delete $state_file to discard the review)" >&2
+      return 1
+    fi
+
+    command rm -f -- "$state_file"
+    echo "Already on '$branch'; cleared review state"
+    return 0
+  fi
+
+  git -C "$top" reset --quiet --soft "$head" || return 1
+  git -C "$top" switch --quiet "$branch" || return 1
+  command rm -f -- "$state_file"
+
+  echo "Back on '$branch' in $top"
+
+  if [[ -n "$(git -C "$top" status --porcelain --untracked-files=no)" ]]; then
+    echo "Note: edits or staging changes made during the review are still present (see git status)"
+  fi
+}
